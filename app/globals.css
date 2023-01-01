@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --terminal-color: #d3594d;
+  --terminal-glow: 0 0 2px rgba(211, 89, 77, 0.2);
+  --title-glow: 0 0 4px rgba(211, 89, 77, 0.25);
+  --interactive-glow: 0 0 3px rgba(211, 89, 77, 0.3);
+}
+
+body {
+  background-color: #000000;
+}
+
+.terminal-glow {
+  text-shadow: var(--terminal-glow);
+  color: var(--terminal-color);
+}
+
+@keyframes cursor-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.cursor-blink::after {
+  content: "_";
+  animation: cursor-blink 1s infinite;
+}
+
+/* Add transition animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.slide-up {
+  animation: slideUp 0.5s ease-out;
+}
+
+.interactive-glow {
+  transition: all 0.2s ease;
+}
+
+.interactive-glow:hover {
+  text-shadow: var(--interactive-glow);
+  box-shadow: var(--interactive-glow);
+}
+
+.title-glow {
+  text-shadow: var(--title-glow);
+  color: var(--terminal-color);
+}
+
+/* Matte finish classes */
+.matte-bg {
+  background: linear-gradient(180deg, rgba(0, 32, 0, 0.2) 0%, rgba(0, 16, 0, 0.1) 100%);
+}
+
+.matte-border {
+  border-color: rgba(211, 89, 77, 0.2);
+}
+
+.matte-text {
+  color: rgba(0, 255, 0, 0.8);
+}
+
