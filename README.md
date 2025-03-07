@@ -203,7 +203,7 @@ git push origin feature/AmazingFeature
 Distributed under the **MIT License**. See `LICENSE` for details.
 
 ## 📧 Contact
-Your Name - [@BioFusionAgent](https://x.com/BioFusionAgent) 
+Your Name - [@BioTechAi](https://x.com/BioTechAi_sol) 
 
 Project Link: [https://github.com/yourusername/protein-visualizer](https://github.com/yourusername/protein-visualizer)
 
