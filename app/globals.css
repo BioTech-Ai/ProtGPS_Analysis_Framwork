@@ -3,89 +3,180 @@
 @tailwind utilities;
 
 :root {
-  --terminal-color: #d3594d;
-  --terminal-glow: 0 0 2px rgba(211, 89, 77, 0.2);
-  --title-glow: 0 0 4px rgba(211, 89, 77, 0.25);
-  --interactive-glow: 0 0 3px rgba(211, 89, 77, 0.3);
+  --background: 0 0% 0%;
+  --foreground: 0 0% 100%;
+
+  /* Binance Theme Colors */
+  --binance-gold: 45 89% 50%;
+  --binance-dark-gold: 45 89% 45%;
+  --binance-light-gold: 45 93% 60%;
+
+  /* Theme colors */
+  --primary: var(--binance-gold);
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: var(--binance-dark-gold);
+  --secondary-foreground: 0 0% 100%;
+
+  --muted: 220 14% 96%;
+  --muted-foreground: 220 8% 56%;
+
+  --accent: var(--binance-light-gold);
+  --accent-foreground: 0 0% 100%;
+
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: var(--binance-gold);
+  --input: var(--binance-gold);
+  --ring: var(--binance-gold);
+
+  --radius: 0.5rem;
 }
 
-body {
-  background-color: #000000;
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  background: linear-gradient(45deg, #f0b90b, #f8d33a, #d9a50a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
-.terminal-glow {
-  text-shadow: var(--terminal-glow);
-  color: var(--terminal-color);
+/* Energy Glow Effect */
+.energy-glow {
+  position: relative;
 }
 
-@keyframes cursor-blink {
-  0%,
-  100% {
-    opacity: 1;
+.energy-glow::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, #f0b90b, #f8d33a, #d9a50a);
+  border-radius: inherit;
+  z-index: -1;
+  filter: blur(8px);
+  opacity: 0.7;
+  animation: rotate 6s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    background-position: 0% 50%;
   }
   50% {
-    opacity: 0;
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
 
-.cursor-blink::after {
-  content: "_";
-  animation: cursor-blink 1s infinite;
+/* Logo Animation */
+.logo-container {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 50%;
 }
 
-/* Add transition animations */
-@keyframes fadeIn {
+.logo-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.logo-glow {
+  animation: glow 3s ease-in-out infinite;
+}
+
+/* Button styles */
+.button-energy {
+  background: linear-gradient(45deg, #f0b90b, #f8d33a, #d9a50a);
+  color: white;
+  border: none;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.button-energy:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(240, 185, 11, 0.5);
+}
+
+/* Card styles */
+.card-energy {
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+}
+
+.card-energy::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(45deg, #f0b90b, #f8d33a, #d9a50a);
+  z-index: -1;
+  border-radius: inherit;
+  filter: blur(4px);
+}
+
+/* Terminal glow effects */
+.terminal-glow {
+  text-shadow: 0 0 10px rgba(240, 185, 11, 0.7);
+}
+
+.glow-yellow {
+  text-shadow: 0 0 10px rgba(240, 185, 11, 0.7);
+}
+
+.terminal-box-glow {
+  box-shadow: 0 0 15px rgba(240, 185, 11, 0.3);
+}
+
+/* Update the glow effect for the Synapse branding */
+.synapse-text {
+  background: linear-gradient(45deg, #f0b90b, #f8d33a, #d9a50a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-shift 8s ease infinite;
+  background-size: 300% 300%;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes scan {
   from {
-    opacity: 0;
+    background-position: 0 0;
   }
   to {
-    opacity: 1;
+    background-position: 0 -100%;
   }
 }
 
-@keyframes slideUp {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+/* Make scan lines more visible */
+.bg-scan-lines {
+  background: linear-gradient(to bottom, transparent 50%, rgba(0, 255, 255, 0.1) 50%);
+  background-size: 100% 4px;
+  animation: scan 10s linear infinite;
 }
-
-.fade-in {
-  animation: fadeIn 0.5s ease-out;
-}
-
-.slide-up {
-  animation: slideUp 0.5s ease-out;
-}
-
-.interactive-glow {
-  transition: all 0.2s ease;
-}
-
-.interactive-glow:hover {
-  text-shadow: var(--interactive-glow);
-  box-shadow: var(--interactive-glow);
-}
-
-.title-glow {
-  text-shadow: var(--title-glow);
-  color: var(--terminal-color);
-}
-
-/* Matte finish classes */
-.matte-bg {
-  background: linear-gradient(180deg, rgba(0, 32, 0, 0.2) 0%, rgba(0, 16, 0, 0.1) 100%);
-}
-
-.matte-border {
-  border-color: rgba(211, 89, 77, 0.2);
-}
-
-.matte-text {
-  color: rgba(0, 255, 0, 0.8);
-}
-

@@ -2,6 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { BrainCircuitIcon } from "lucide-react"
+import { motion } from "framer-motion"
 
 interface AnalysisResultsProps {
   results: string[]
@@ -10,31 +11,36 @@ interface AnalysisResultsProps {
 
 export default function AnalysisResults({ results, isLoading }: AnalysisResultsProps) {
   return (
-    <Card className="bg-black/40 matte-border backdrop-blur-sm">
+    <Card className="bg-black/90 border-[#F0B90B]/30">
       <CardHeader>
-        <CardTitle className="text-[#d3594d]/80 flex items-center gap-2">
+        <CardTitle className="text-[#F0B90B] flex items-center gap-2">
           <BrainCircuitIcon className="w-5 h-5" />
-          AI Analysis Results
+          Analysis Results
         </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-4 min-h-[200px] font-mono">
           {isLoading ? (
-            <div className="text-[#d3594d]/60 animate-pulse">Analyzing protein structure and location...</div>
+            <div className="text-[#F0B90B]/70 animate-pulse">Analyzing protein sequence...</div>
           ) : results.length > 0 ? (
             <div className="space-y-2">
               {results.map((result, index) => (
-                <div key={index} className="text-[#d3594d]/70">
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="text-[#F0B90B]"
+                >
                   {result}
-                </div>
+                </motion.div>
               ))}
             </div>
           ) : (
-            <div className="text-[#d3594d]/20">Enter a formula and click analyze to see AI predictions</div>
+            <div className="text-[#F0B90B]/50">Enter a sequence and click analyze to see predictions</div>
           )}
         </div>
       </CardContent>
     </Card>
   )
 }
-

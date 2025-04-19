@@ -21,6 +21,12 @@ const nextConfig = {
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
+  reactStrictMode: true,
+  transpilePackages: ['three', '@react-three/fiber', '@react-three/drei'],
+  webpack: (config) => {
+    config.resolve.preferRelative = true;
+    return config;
+  },
 }
 
 mergeConfig(nextConfig, userConfig)

@@ -15,8 +15,8 @@ export default function Terminal3D() {
         <boxGeometry args={[6, 4, 0.1]} />
         <meshPhongMaterial
           color="#000000"
-          emissive="#001100"
-          specular="#00ff00"
+          emissive="#332200"
+          specular="#F0B90B"
           shininess={100}
           transparent
           opacity={0.9}
@@ -44,9 +44,8 @@ export default function Terminal3D() {
       {/* Glow Effect */}
       <mesh position={[0, 0, -0.05]}>
         <planeGeometry args={[6.2, 4.2]} />
-        <meshBasicMaterial color="#00ff00" transparent opacity={0.1} side={DoubleSide} />
+        <meshBasicMaterial color="#F0B90B" transparent opacity={0.1} side={DoubleSide} />
       </mesh>
     </group>
   )
 }
-

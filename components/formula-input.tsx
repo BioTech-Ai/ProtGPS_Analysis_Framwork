@@ -1,5 +1,6 @@
 "use client"
 
+import type React from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { BrainCircuitIcon } from "lucide-react"
@@ -49,16 +50,26 @@ export default function FormulaInput({ value, onChange, onAnalyze, isAnalyzing }
 
   const handleAnalyze = useCallback(() => {
     if (!value.trim()) {
-      setError("Please enter a formula")
+      setError("Please enter a sequence")
       return
     }
 
-    const isValid = value.split("").every((char) => AMINO_ACIDS.has(char))
-    if (!isValid) {
-      setError("Invalid formula. Please use only valid amino acid letters (A-Y)")
+    // Allow special commands
+    const command = value.toLowerCase()
+    if (["help", "clear", "example"].includes(command)) {
+      setError(null)
+      onAnalyze()
       return
     }
 
+    // Validate sequence
+    const invalidChars = [...value].filter((char) => !AMINO_ACIDS.has(char.toUpperCase()))
+    if (invalidChars.length > 0) {
+      setError(`Invalid amino acids: ${[...new Set(invalidChars)].join(", ")}`)
+      return
+    }
+
+    setError(null)
     onAnalyze()
   }, [value, onAnalyze])
 
@@ -68,26 +79,23 @@ export default function FormulaInput({ value, onChange, onAnalyze, isAnalyzing }
         <Input
           value={value}
           onChange={handleInputChange}
-          placeholder="Enter molecular formula..."
-          className="font-mono bg-black/20 border-[#d3594d]/10 text-[#d3594d]/80 placeholder:text-[#d3594d]/20"
-          maxLength={50}
+          placeholder="Enter protein sequence or command (help, clear, example)..."
+          className="font-mono bg-black/50 border-[#F0B90B]/30 text-[#F0B90B] placeholder:text-[#F0B90B]/50"
         />
         {error ? (
-          <div className="text-red-400/90 text-xs">{error}</div>
+          <div className="text-red-500 text-xs">{error}</div>
         ) : (
-          <div className="text-xs text-[#d3594d]/40">Example: MAEGEITTFTALTEKFNLPPGNYKKPKLLYCSNG</div>
+          <div className="text-xs text-[#F0B90B]/50 font-mono">Example: MAEGEITTFTALTEKFNLPPGNYKKPKLLYCSNG</div>
         )}
       </div>
       <Button
         onClick={handleAnalyze}
-        disabled={!value || isAnalyzing}
-        className={`w-full matte-bg border matte-border text-[#d3594d]/80 hover:bg-[#d3594d]/5 
-          transition-colors ${isAnalyzing ? "opacity-50" : ""}`}
+        disabled={isAnalyzing}
+        className="w-full bg-[#F0B90B]/10 text-[#F0B90B] hover:bg-[#F0B90B]/20 border border-[#F0B90B]/30 disabled:opacity-50"
       >
         <BrainCircuitIcon className="w-4 h-4 mr-2" />
-        {isAnalyzing ? "Analyzing..." : "Analyze with AI"}
+        {isAnalyzing ? "Analyzing..." : "Analyze Sequence"}
       </Button>
     </div>
   )
 }
-

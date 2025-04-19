@@ -93,4 +93,3 @@ export default function CellModel({ sequence }: CellModelProps) {
     </group>
   )
 }
-

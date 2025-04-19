@@ -1,5 +1,7 @@
 "use client"
 
+import type React from "react"
+
 import { useState, useRef, useEffect, useCallback } from "react"
 import { TerminalIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -76,7 +78,7 @@ export default function ProteinTerminal() {
 
     setIsProcessing(true)
     setError(null)
-    setOutput((prev) => [...prev, `\n> ${trimmedInput}`])
+    setOutput((prev) => [...prev, `> ${trimmedInput}`])
 
     try {
       const result = await analyzeProtein(trimmedInput)
@@ -105,11 +107,11 @@ export default function ProteinTerminal() {
 
   return (
     <Card
-      className="w-[800px] backdrop-blur-sm bg-black/80 border-green-500/30 terminal-box-glow"
+      className="w-[800px] backdrop-blur-sm bg-black/80 border-binance-gold/30 terminal-box-glow"
       onClick={(e) => e.stopPropagation()}
     >
-      <CardHeader className="border-b border-green-500/30">
-        <CardTitle className="flex items-center gap-2 text-green-400 terminal-glow">
+      <CardHeader className="border-b border-binance-gold/30">
+        <CardTitle className="flex items-center gap-2 text-binance-gold terminal-glow">
           <TerminalIcon className="w-5 h-5" />
           ProtGPS Terminal
         </CardTitle>
@@ -117,9 +119,9 @@ export default function ProteinTerminal() {
       <CardContent>
         <div
           ref={terminalRef}
-          className="bg-black/90 rounded-lg p-4 h-[100px] mb-4 overflow-auto border border-green-500/30"
+          className="bg-black/90 rounded-lg p-4 h-[100px] mb-4 overflow-auto border border-binance-gold/30"
         >
-          <div className="text-green-400 font-mono space-y-2 terminal-glow">
+          <div className="text-binance-gold font-mono space-y-2 terminal-glow">
             {output.map((line, i) => (
               <div key={i} className="whitespace-pre-wrap">
                 {line}
@@ -134,13 +136,13 @@ export default function ProteinTerminal() {
             onChange={handleInputChange}
             onClick={(e) => e.stopPropagation()}
             placeholder="Enter protein sequence or command..."
-            className="font-mono bg-black/50 border-green-500/30 text-green-400 placeholder:text-green-600/50 h-8 min-h-0 py-1"
+            className="font-mono bg-black/50 border-binance-gold/30 text-binance-gold placeholder:text-binance-gold/50 h-8 min-h-0 py-1"
             disabled={isProcessing}
           />
           <Button
             type="submit"
             disabled={isProcessing}
-            className="bg-green-500/20 text-green-400 hover:bg-green-500/30 border border-green-500/30 terminal-glow"
+            className="bg-binance-gold/20 text-binance-gold hover:bg-binance-gold/30 border border-binance-gold/30 terminal-glow"
             onClick={(e) => e.stopPropagation()}
           >
             {isProcessing ? "Processing..." : "Analyze"}
@@ -150,4 +152,3 @@ export default function ProteinTerminal() {
     </Card>
   )
 }
-

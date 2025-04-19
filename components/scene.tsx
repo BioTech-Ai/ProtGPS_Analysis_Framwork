@@ -1,16 +1,57 @@
 "use client"
 
 import { Canvas } from "@react-three/fiber"
-import { Environment, OrbitControls, Float, Text, PerspectiveCamera } from "@react-three/drei"
-import { Suspense } from "react"
+import { Environment, OrbitControls, Float } from "@react-three/drei"
+import { Suspense, useMemo, useEffect } from "react"
 import Terminal3D from "./terminal-3d"
 import Particles from "./particles"
+import * as THREE from "three"
+
+// Custom text renderer using CanvasTexture
+function TextSprite({
+  text,
+  position,
+  scale = 1,
+}: {
+  text: string
+  position: [number, number, number]
+  scale?: number
+}) {
+  const texture = useMemo(() => {
+    const canvas = document.createElement("canvas")
+    canvas.width = 512
+    canvas.height = 128
+    const context = canvas.getContext("2d")
+    if (context) {
+      context.fillStyle = "#00ff00"
+      context.font = "bold 48px Inter"
+      context.textAlign = "center"
+      context.textBaseline = "middle"
+      context.fillText(text, canvas.width / 2, canvas.height / 2)
+    }
+    const texture = new THREE.CanvasTexture(canvas)
+    texture.needsUpdate = true
+    return texture
+  }, [text])
+
+  // Cleanup texture when component unmounts
+  useEffect(() => {
+    return () => {
+      texture.dispose()
+    }
+  }, [texture])
+
+  return (
+    <sprite position={position} scale={[8 * scale, 2 * scale, 1]}>
+      <spriteMaterial map={texture} transparent opacity={0.9} />
+    </sprite>
+  )
+}
 
 export default function Scene() {
   return (
     <div className="w-full h-screen bg-black">
       <Canvas>
-        <PerspectiveCamera makeDefault position={[0, 0, 10]} fov={50} />
         <Suspense fallback={null}>
           {/* Lighting */}
           <ambientLight intensity={0.5} />
@@ -26,17 +67,7 @@ export default function Scene() {
           <Particles count={500} />
 
           {/* Title */}
-          <Text
-            position={[0, 2.5, 0]}
-            fontSize={0.5}
-            color="#00ff00"
-            anchorX="center"
-            anchorY="middle"
-            font="/fonts/Inter_Bold.json"
-            characters="abcdefghijklmnopqrstuvwxyz0123456789!"
-          >
-            ProtGPS Analysis Terminal
-          </Text>
+          <TextSprite text="ProtGPS Analysis Terminal" position={[0, 2.5, 0]} scale={1.2} />
 
           {/* Environment and Controls */}
           <Environment preset="night" />
@@ -62,4 +93,3 @@ export default function Scene() {
     </div>
   )
 }
-

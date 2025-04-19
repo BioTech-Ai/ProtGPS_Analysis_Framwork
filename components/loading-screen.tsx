@@ -47,4 +47,3 @@ export default function LoadingScreen({ onLoadingComplete }: { onLoadingComplete
     </div>
   )
 }
-

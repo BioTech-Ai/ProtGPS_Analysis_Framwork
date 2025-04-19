@@ -76,4 +76,3 @@ export default function FormulaEditor({ value, onChange }: FormulaEditorProps) {
     </Card>
   )
 }
-

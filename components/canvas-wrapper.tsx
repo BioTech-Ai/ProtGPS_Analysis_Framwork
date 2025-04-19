@@ -29,4 +29,3 @@ export default function CanvasWrapper({ sequence, analysisData }: CanvasWrapperP
     </div>
   )
 }
-

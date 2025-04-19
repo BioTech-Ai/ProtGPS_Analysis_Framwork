@@ -30,4 +30,3 @@ export default function Scene3D({ formula }: Scene3DProps) {
     </>
   )
 }
-

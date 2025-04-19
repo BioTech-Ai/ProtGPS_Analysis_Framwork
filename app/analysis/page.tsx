@@ -1,140 +1,200 @@
 "use client"
 
-import { useState, useCallback, Suspense } from "react"
-import { BeakerIcon, BookOpenIcon, BrainCircuitIcon } from "lucide-react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import AnalysisResults from "@/components/analysis-results"
-import FormulaInput from "@/components/formula-input"
-import VisualizationCard from "@/components/visualization-card"
-import { analyzeProtein } from "@/actions/analyze"
-import EducationContent from "@/components/education-content"
+import { useState } from "react"
+import { motion } from "framer-motion"
+import { ArrowLeft, BrainCircuitIcon } from "lucide-react"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { useToast } from "@/components/ui/use-toast"
+import { analyzeProtein } from "../actions/analyze-protein"
+import type { ProteinAnalysisResult } from "../actions/analyze-protein"
+import { HelpDialog } from "@/components/help-dialog"
+import SplashScreen from "@/components/splash-screen"
 
-interface AnalysisResult {
-  location: string
-  confidence: string
-  compartments: string[]
-  interactions: string
-  signals: string
-}
-
-export default function AnalysisPage() {
+export default function ProteinAnalysisPage() {
+  const { toast } = useToast()
   const [sequence, setSequence] = useState("")
-  const [analysisResults, setAnalysisResults] = useState<string[]>([])
   const [isAnalyzing, setIsAnalyzing] = useState(false)
-  const [activeTab, setActiveTab] = useState("analysis")
-  const [analysisData, setAnalysisData] = useState<AnalysisResult | null>(null)
+  const [result, setResult] = useState<ProteinAnalysisResult | null>(null)
+  const [loading, setLoading] = useState(true)
 
-  const handleSequenceChange = useCallback((newSequence: string) => {
-    setSequence(newSequence)
-  }, [])
+  // Handle splash screen completion
+  const handleSplashComplete = () => {
+    setLoading(false)
+  }
 
-  const handleAnalyze = useCallback(async () => {
+  const handleAnalyze = async () => {
+    if (!sequence.trim()) {
+      toast({
+        title: "Error",
+        description: "Please enter a protein sequence",
+        variant: "destructive",
+      })
+      return
+    }
+
+    setIsAnalyzing(true)
     try {
-      setIsAnalyzing(true)
-      const result = await analyzeProtein(sequence)
-      setAnalysisData(result)
-      setAnalysisResults([
-        `Predicted Location: ${result.location}`,
-        `Confidence Score: ${result.confidence}`,
-        `Associated Compartments: ${result.compartments.join(", ")}`,
-        `Potential Interactions: ${result.interactions}`,
-        `Localization Signals: ${result.signals}`,
-      ])
+      const analysisResult = await analyzeProtein(sequence)
+      setResult(analysisResult)
+      toast({
+        title: "Analysis Complete",
+        description: "Your protein sequence has been analyzed successfully.",
+      })
     } catch (error) {
-      console.error("Analysis error:", error)
-      setAnalysisResults(["Error: Unable to analyze protein sequence"])
-      setAnalysisData(null)
+      toast({
+        title: "Analysis Failed",
+        description: error instanceof Error ? error.message : "Failed to analyze sequence",
+        variant: "destructive",
+      })
     } finally {
       setIsAnalyzing(false)
     }
-  }, [sequence])
+  }
+
+  // If loading, show splash screen
+  if (loading) {
+    return <SplashScreen onComplete={handleSplashComplete} />
+  }
 
   return (
-    <main className="min-h-screen bg-black p-4">
-      <div className="max-w-7xl mx-auto space-y-8">
-        {/* Header */}
-        <div className="text-center space-y-4">
-          <h1 className="text-4xl font-bold text-[#d3594d]/90 title-glow">ProtGPS Analysis Platform</h1>
-          <p className="text-[#d3594d]/40">Advanced Protein Localization Prediction System</p>
-        </div>
-
-        {/* Main Content */}
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
-          <TabsList className="grid w-full grid-cols-3 bg-black/40 border matte-border rounded-lg">
-            <TabsTrigger
-              value="analysis"
-              className="text-[#d3594d]/60 data-[state=active]:text-[#d3594d]/90 hover:text-[#d3594d]/90 transition-colors"
-            >
-              <BrainCircuitIcon className="w-4 h-4 mr-2" />
-              Analysis
-            </TabsTrigger>
-            <TabsTrigger
-              value="visualization"
-              className="text-[#d3594d]/60 data-[state=active]:text-[#d3594d]/90 hover:text-[#d3594d]/90 transition-colors"
-            >
-              <BeakerIcon className="w-4 h-4 mr-2" />
-              Visualization
-            </TabsTrigger>
-            <TabsTrigger
-              value="education"
-              className="text-[#d3594d]/60 data-[state=active]:text-[#d3594d]/90 hover:text-[#d3594d]/90 transition-colors"
-            >
-              <BookOpenIcon className="w-4 h-4 mr-2" />
-              Learn
-            </TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="analysis" className="space-y-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {/* Input and Analysis */}
-              <div className="space-y-6">
-                <Card className="bg-black/40 matte-border backdrop-blur-sm">
-                  <CardHeader>
-                    <CardTitle className="text-[#d3594d]/80 flex items-center gap-2">
-                      <BrainCircuitIcon className="w-5 h-5" />
-                      Protein Sequence Analysis
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <FormulaInput
-                      value={sequence}
-                      onChange={handleSequenceChange}
-                      onAnalyze={handleAnalyze}
-                      isAnalyzing={isAnalyzing}
-                    />
-                  </CardContent>
-                </Card>
-
-                <AnalysisResults results={analysisResults} isLoading={isAnalyzing} />
+    <div className="min-h-screen bg-black">
+      <header className="border-b border-[#F0B90B]/30 bg-black/80 backdrop-blur-sm">
+        <div className="container mx-auto px-4">
+          <div className="flex h-16 items-center justify-between">
+            <div className="flex items-center gap-4">
+              <Link href="/" className="text-[#F0B90B]/70 hover:text-[#F0B90B] transition-colors">
+                <ArrowLeft className="w-5 h-5" />
+              </Link>
+              <div>
+                <h1 className="text-2xl font-bold flex items-center gap-2 text-[#F0B90B] glow-yellow">
+                  <BrainCircuitIcon className="w-6 h-6" />
+                  BioTech AI - Synapse Analysis
+                </h1>
+                <div className="text-xs text-[#F0B90B]/70">biotech-synapse.xyz</div>
               </div>
-
-              {/* Visualization */}
-              <Suspense fallback={<div className="h-[600px] bg-black/40 matte-border rounded-lg" />}>
-                <VisualizationCard sequence={sequence} analysisData={analysisData} />
-              </Suspense>
             </div>
-          </TabsContent>
+            <HelpDialog title="How to Use Protein Analysis">
+              <p>
+                The BioFusionGPS Analysis tool helps you analyze protein sequences to predict their cellular location,
+                structure, and function. Follow these steps to get started:
+              </p>
+              <ol className="list-decimal list-inside space-y-2 mt-2">
+                <li>Enter a valid protein sequence in the input field (using standard amino acid letters A-Y)</li>
+                <li>Click the "Analyze Sequence" button to start the analysis</li>
+                <li>
+                  View the results, which include:
+                  <ul className="list-disc list-inside ml-6 mt-1">
+                    <li>Primary cellular location</li>
+                    <li>Confidence level of the prediction</li>
+                    <li>Possible cellular compartments</li>
+                    <li>Predicted protein interactions</li>
+                    <li>Structural features</li>
+                    <li>Additional predictions about membrane association, secretion, etc.</li>
+                  </ul>
+                </li>
+              </ol>
+              <p className="mt-2">
+                <strong>Example sequence:</strong> MAEGEITTFTALTEKFNLPPGNYKKPKLLYCSNG
+              </p>
+              <p className="mt-2">
+                <strong>Note:</strong> Analysis typically takes 5-15 seconds depending on sequence length.
+              </p>
+            </HelpDialog>
+          </div>
+        </div>
+      </header>
 
-          <TabsContent value="visualization" className="space-y-4">
-            <Card className="bg-black/40 matte-border backdrop-blur-sm">
-              <CardHeader>
-                <CardTitle className="text-[#d3594d]/80">Molecular Visualization</CardTitle>
-              </CardHeader>
-              <CardContent className="h-[600px]">
-                <Suspense fallback={<div className="h-full bg-black/40 matte-border" />}>
-                  <VisualizationCard sequence={sequence} analysisData={analysisData} />
-                </Suspense>
-              </CardContent>
-            </Card>
-          </TabsContent>
+      <main className="container mx-auto px-4 py-8">
+        <div className="max-w-4xl mx-auto space-y-8">
+          <Card className="bg-black/90 border-[#F0B90B]/30">
+            <CardHeader>
+              <div className="flex justify-between items-start">
+                <div>
+                  <CardTitle className="text-[#F0B90B]">Protein Sequence Analysis</CardTitle>
+                  <CardDescription className="text-[#F0B90B]/70">
+                    Enter a protein sequence to analyze its location and structure
+                  </CardDescription>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Input
+                  value={sequence}
+                  onChange={(e) => setSequence(e.target.value)}
+                  placeholder="Enter protein sequence..."
+                  className="font-mono bg-black/50 border-[#F0B90B]/30 text-[#F0B90B] placeholder:text-[#F0B90B]/50"
+                />
+                <p className="text-xs text-[#F0B90B]/50">Example: MAEGEITTFTALTEKFNLPPGNYKKPKLLYCSNG</p>
+              </div>
+              <Button
+                onClick={handleAnalyze}
+                disabled={isAnalyzing}
+                className="w-full bg-[#F0B90B]/10 text-[#F0B90B] hover:bg-[#F0B90B]/20 border border-[#F0B90B]/30"
+              >
+                {isAnalyzing ? "Analyzing..." : "Analyze Sequence"}
+              </Button>
+            </CardContent>
+          </Card>
 
-          <TabsContent value="education" className="space-y-4">
-            <EducationContent />
-          </TabsContent>
-        </Tabs>
-      </div>
-    </main>
+          {result && (
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
+              <Card className="bg-black/90 border-[#F0B90B]/30">
+                <CardHeader>
+                  <CardTitle className="text-[#F0B90B]">Analysis Results</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="grid gap-4">
+                    <div>
+                      <h3 className="text-[#F0B90B] font-semibold mb-2">Primary Location</h3>
+                      <p className="text-[#F0B90B]/90">{result.location}</p>
+                    </div>
+                    <div>
+                      <h3 className="text-[#F0B90B] font-semibold mb-2">Confidence</h3>
+                      <p className="text-[#F0B90B]/90">{result.confidence}</p>
+                    </div>
+                    <div>
+                      <h3 className="text-[#F0B90B] font-semibold mb-2">Cellular Compartments</h3>
+                      <ul className="list-disc list-inside text-[#F0B90B]/90">
+                        {result.compartments.map((compartment, index) => (
+                          <li key={index}>{compartment}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <h3 className="text-[#F0B90B] font-semibold mb-2">Predicted Interactions</h3>
+                      <ul className="list-disc list-inside text-[#F0B90B]/90">
+                        {result.interactions.map((interaction, index) => (
+                          <li key={index}>{interaction}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <h3 className="text-[#F0B90B] font-semibold mb-2">Structural Features</h3>
+                      <ul className="list-disc list-inside text-[#F0B90B]/90">
+                        {result.structuralFeatures.map((feature, index) => (
+                          <li key={index}>{feature}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <h3 className="text-[#F0B90B] font-semibold mb-2">Additional Predictions</h3>
+                      <ul className="list-disc list-inside text-[#F0B90B]/90">
+                        <li>Membrane Protein: {result.predictions.membrane ? "Yes" : "No"}</li>
+                        <li>Secretory Protein: {result.predictions.secretory ? "Yes" : "No"}</li>
+                        <li>Nuclear Protein: {result.predictions.nuclear ? "Yes" : "No"}</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          )}
+        </div>
+      </main>
+    </div>
   )
 }
-

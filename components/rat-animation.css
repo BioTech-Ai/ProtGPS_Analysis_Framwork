@@ -1,0 +1,234 @@
+.rat-animation-container {
+  position: relative;
+  width: 100%;
+  height: 120px;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  perspective: 800px;
+}
+
+.rat {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: rat-run 8s linear infinite;
+  transform-style: preserve-3d;
+  top: 40px;
+}
+
+.rat-body {
+  position: relative;
+  transform-style: preserve-3d;
+  animation: rat-body-move 0.6s infinite alternate;
+}
+
+.rat-head {
+  width: 25px;
+  height: 20px;
+  background: linear-gradient(to bottom, #f0b90b, #d9a50a);
+  border-radius: 50% 60% 40% 50%;
+  position: absolute;
+  left: -10px;
+  top: -5px;
+  transform: rotateY(-15deg);
+  box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.rat-ear {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #d9a50a;
+  border-radius: 50%;
+}
+
+.rat-ear-left {
+  top: -5px;
+  left: 2px;
+  transform: rotateZ(10deg);
+}
+
+.rat-ear-right {
+  top: -5px;
+  right: 2px;
+  transform: rotateZ(-10deg);
+}
+
+.rat-eye {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background-color: black;
+  border-radius: 50%;
+  top: 5px;
+  left: 5px;
+  animation: rat-blink 3s infinite;
+}
+
+.rat-nose {
+  position: absolute;
+  width: 5px;
+  height: 3px;
+  background-color: #333;
+  border-radius: 50%;
+  top: 10px;
+  left: 0px;
+}
+
+.rat-whisker {
+  position: absolute;
+  width: 10px;
+  height: 1px;
+  background-color: #ddd;
+}
+
+.rat-whisker-1 {
+  top: 9px;
+  left: -5px;
+  transform: rotate(-10deg);
+}
+
+.rat-whisker-2 {
+  top: 11px;
+  left: -5px;
+}
+
+.rat-whisker-3 {
+  top: 13px;
+  left: -5px;
+  transform: rotate(10deg);
+}
+
+.rat-torso {
+  width: 40px;
+  height: 20px;
+  background: linear-gradient(to bottom, #f0b90b, #d9a50a);
+  border-radius: 40% 30% 50% 40%;
+  position: relative;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.rat-tail {
+  position: absolute;
+  width: 30px;
+  height: 3px;
+  background: linear-gradient(to right, #d9a50a, #f0b90b);
+  border-radius: 3px;
+  top: 10px;
+  right: -28px;
+  transform-origin: left center;
+  animation: rat-tail-wag 0.3s infinite alternate;
+}
+
+.rat-leg {
+  position: absolute;
+  width: 3px;
+  height: 8px;
+  background-color: #d9a50a;
+  border-radius: 1px;
+}
+
+.rat-leg-front-left {
+  bottom: -8px;
+  left: 8px;
+  animation: rat-leg-move 0.3s infinite alternate;
+}
+
+.rat-leg-front-right {
+  bottom: -8px;
+  left: 15px;
+  animation: rat-leg-move 0.3s infinite alternate-reverse;
+}
+
+.rat-leg-back-left {
+  bottom: -8px;
+  right: 15px;
+  animation: rat-leg-move 0.3s infinite alternate-reverse;
+}
+
+.rat-leg-back-right {
+  bottom: -8px;
+  right: 8px;
+  animation: rat-leg-move 0.3s infinite alternate;
+}
+
+.rat-shadow {
+  position: absolute;
+  width: 50px;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  bottom: -25px;
+  filter: blur(3px);
+  animation: rat-shadow 0.6s infinite alternate;
+}
+
+.rat-label {
+  font-size: 12px;
+  color: #f0b90b;
+  margin-top: 30px;
+  font-weight: bold;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes rat-run {
+  0% {
+    left: -80px;
+    transform: rotateY(0deg);
+  }
+  100% {
+    left: calc(100% + 20px);
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes rat-body-move {
+  0% {
+    transform: translateY(0) rotateZ(0deg);
+  }
+  100% {
+    transform: translateY(-2px) rotateZ(1deg);
+  }
+}
+
+@keyframes rat-tail-wag {
+  0% {
+    transform: rotateZ(5deg);
+  }
+  100% {
+    transform: rotateZ(-5deg);
+  }
+}
+
+@keyframes rat-leg-move {
+  0% {
+    transform: translateY(0) rotateZ(0deg);
+  }
+  100% {
+    transform: translateY(2px) rotateZ(10deg);
+  }
+}
+
+@keyframes rat-shadow {
+  0% {
+    transform: scaleX(1);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scaleX(0.9);
+    opacity: 0.15;
+  }
+}
+
+@keyframes rat-blink {
+  0%,
+  95%,
+  100% {
+    transform: scaleY(1);
+  }
+  97.5% {
+    transform: scaleY(0.1);
+  }
+}
