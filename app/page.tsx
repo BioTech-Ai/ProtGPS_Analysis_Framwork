@@ -333,7 +333,7 @@ export default function Home() {
                           experiment.status === "Beta" ? "opacity-75" : ""
                         } ${experiment.status === "Operational" && experiment.link ? "cursor-pointer" : "cursor-not-allowed"}`}
                         onClick={() =>
-                          experiment.status === "Operational" && experiment.link && router.push(experiment.link)
+                          experiment.status === "Operational" && experiment?.link && router.push(experiment.link)
                         }
                       >
                         <div className="flex justify-between items-start mb-4">
