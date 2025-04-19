@@ -29,8 +29,37 @@ import { BrandTelegram } from "@/components/icons/brand-telegram"
 // First, import the Twitter icon and Discord icon
 import { BrandTwitter } from "@/components/icons/brand-twitter"
 import { DiscIcon as DiscordIcon } from "lucide-react"
+import type { LucideIcon } from "lucide-react"
 
-const categories = [
+// Define interfaces for our data structure
+interface BaseExperiment {
+  title: string
+  description: string
+  icon: LucideIcon
+  status: string
+}
+
+interface OperationalExperiment extends BaseExperiment {
+  id: string
+  link: string
+  tags: string[]
+  status: "Operational"
+  highlight: boolean
+}
+
+interface BetaExperiment extends BaseExperiment {
+  status: "Beta"
+}
+
+type Experiment = OperationalExperiment | BetaExperiment
+
+interface Category {
+  title: string
+  description: string
+  experiments: Experiment[]
+}
+
+const categories: Category[] = [
   {
     title: "Molecular Biology",
     description: "Advanced molecular analysis and research tools",
@@ -42,7 +71,7 @@ const categories = [
         icon: BrainCircuitIcon,
         link: "/analysis",
         tags: ["AI", "Protein Analysis", "Molecular Dynamics"],
-        status: "Operational",
+        status: "Operational" as const,
         highlight: true,
       },
     ],
@@ -56,31 +85,31 @@ const categories = [
         icon: MicroscopeIcon,
         title: "Advanced Cell Imaging",
         description: "High-resolution microscopy with AI-powered analysis",
-        status: "Beta",
+        status: "Beta" as const,
       },
       {
         icon: PetriDishIcon,
         title: "Smart Cell Culture System",
         description: "Automated culture monitoring with growth optimization",
-        status: "Beta",
+        status: "Beta" as const,
       },
       {
         icon: CellIcon,
         title: "Cell Signaling Analyzer",
         description: "Advanced pathway and molecular interaction analysis",
-        status: "Beta",
+        status: "Beta" as const,
       },
       {
         icon: SearchIcon,
         title: "Cancer Cell Detector",
         description: "ML-based cancer cell identification and analysis",
-        status: "Beta",
+        status: "Beta" as const,
       },
       {
         icon: WrenchIcon,
         title: "Cancer Cell Repair Analysis",
         description: "DNA repair mechanism analysis in cancer cells",
-        status: "Beta",
+        status: "Beta" as const,
       },
     ],
   },
@@ -92,19 +121,19 @@ const categories = [
         icon: FlaskConicalIcon,
         title: "Virtual Drug Screening",
         description: "AI-driven drug screening and molecular docking",
-        status: "Beta",
+        status: "Beta" as const,
       },
       {
         icon: VialIcon,
         title: "Toxicity Predictor",
         description: "ML-based ADMET property prediction",
-        status: "Beta",
+        status: "Beta" as const,
       },
       {
         icon: HeartPulseIcon,
         title: "Biomarker Discovery",
         description: "Multi-omics biomarker identification",
-        status: "Beta",
+        status: "Beta" as const,
       },
     ],
   },
@@ -331,9 +360,9 @@ export default function Home() {
                       <Card
                         className={`p-6 bg-black/80 border-binance-gold/30 ${
                           experiment.status === "Beta" ? "opacity-75" : ""
-                        } ${experiment.status === "Operational" && experiment.link ? "cursor-pointer" : "cursor-not-allowed"}`}
+                        } ${experiment.status === "Operational" ? "cursor-pointer" : "cursor-not-allowed"}`}
                         onClick={() =>
-                          experiment.status === "Operational" && experiment?.link && router.push(experiment.link)
+                          experiment.status === "Operational" && router.push((experiment as OperationalExperiment).link)
                         }
                       >
                         <div className="flex justify-between items-start mb-4">
