@@ -240,10 +240,6 @@ export default function DoctorChat() {
           </Button>
         </form>
         <div className="max-w-3xl mx-auto mt-4 text-sm text-blue-400/70 space-y-2">
-          <div className="text-center">
-            Dr. Synapse provides general information only and is not a substitute for professional medical advice,
-            diagnosis, or treatment.
-          </div>
           <div className="flex justify-center space-x-4 pt-2">
             <a
               href="https://t.me/BioTech_DRSynapse_Bot"
