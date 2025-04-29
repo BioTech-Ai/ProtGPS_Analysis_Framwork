@@ -141,7 +141,7 @@ export default function Home() {
                   <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
                     Biotech Ai - Synapse
                   </h1>
-                  <div className="text-xs text-blue-400/70">biotech-synapse.xyz</div>
+                  {/* Removed the website address line */}
                 </div>
               </div>
               <div className="hidden md:flex space-x-6">
@@ -186,13 +186,9 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Cryptographic Address Banner */}
-      <div className="bg-blue-900/30 border-b border-blue-400/20 py-2">
-        <div className="container mx-auto px-4">
-          <p className="text-blue-300 text-sm text-center font-mono">
-            CA: 7fjw3VGVSEdNyMPzuWaF51NGmJLHmkG5Wwkrfzbvpump
-          </p>
-        </div>
+      {/* Cryptographic Address Banner - Centered */}
+      <div className="bg-blue-900/30 border-b border-blue-400/20 py-3 flex justify-center items-center">
+        <p className="text-blue-300 text-sm font-mono">CA: 7fjw3VGVSEdNyMPzuWaF51NGmJLHmkG5Wwkrfzbvpump</p>
       </div>
 
       {/* Hero Section */}
