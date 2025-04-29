@@ -107,11 +107,11 @@ export default function ProteinTerminal() {
 
   return (
     <Card
-      className="w-[800px] backdrop-blur-sm bg-black/80 border-binance-gold/30 terminal-box-glow"
+      className="w-[800px] backdrop-blur-sm bg-black/80 border-blue-primary/30 terminal-box-glow"
       onClick={(e) => e.stopPropagation()}
     >
-      <CardHeader className="border-b border-binance-gold/30">
-        <CardTitle className="flex items-center gap-2 text-binance-gold terminal-glow">
+      <CardHeader className="border-b border-blue-primary/30">
+        <CardTitle className="flex items-center gap-2 text-blue-primary terminal-glow">
           <TerminalIcon className="w-5 h-5" />
           ProtGPS Terminal
         </CardTitle>
@@ -119,15 +119,17 @@ export default function ProteinTerminal() {
       <CardContent>
         <div
           ref={terminalRef}
-          className="bg-black/90 rounded-lg p-4 h-[100px] mb-4 overflow-auto border border-binance-gold/30"
+          className="bg-black/90 rounded-lg p-4 h-[200px] mb-4 overflow-auto border border-blue-primary/30"
+          aria-live="polite"
         >
-          <div className="text-binance-gold font-mono space-y-2 terminal-glow">
+          <div className="text-blue-primary font-mono space-y-2 terminal-glow text-base leading-relaxed">
             {output.map((line, i) => (
               <div key={i} className="whitespace-pre-wrap">
                 {line}
               </div>
             ))}
             {isProcessing && <div className="animate-pulse">Processing...</div>}
+            {error && <div className="text-red-500 font-bold">{error}</div>}
           </div>
         </div>
         <form onSubmit={handleSubmit} className="flex gap-2">
@@ -136,13 +138,14 @@ export default function ProteinTerminal() {
             onChange={handleInputChange}
             onClick={(e) => e.stopPropagation()}
             placeholder="Enter protein sequence or command..."
-            className="font-mono bg-black/50 border-binance-gold/30 text-binance-gold placeholder:text-binance-gold/50 h-8 min-h-0 py-1"
+            className="font-mono bg-black/50 border-blue-primary/30 text-white placeholder:text-blue-primary/50 h-12 min-h-0 py-2 text-base"
             disabled={isProcessing}
+            aria-label="Protein sequence input"
           />
           <Button
             type="submit"
             disabled={isProcessing}
-            className="bg-binance-gold/20 text-binance-gold hover:bg-binance-gold/30 border border-binance-gold/30 terminal-glow"
+            className="bg-blue-primary/20 text-blue-primary hover:bg-blue-primary/30 border border-blue-primary/30 terminal-glow font-semibold h-12"
             onClick={(e) => e.stopPropagation()}
           >
             {isProcessing ? "Processing..." : "Analyze"}

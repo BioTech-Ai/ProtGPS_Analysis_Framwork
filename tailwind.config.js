@@ -45,36 +45,36 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Binance colors
-        binance: {
-          gold: "#F0B90B",
-          darkGold: "#D9A50A",
-          lightGold: "#F8D33A",
+        // Blue colors (replacing Binance gold colors)
+        blue: {
+          primary: "#0052FF",
+          dark: "#003CBB",
+          light: "#4D8AFF",
           black: "#1E2026",
           darkGray: "#474D57",
           gray: "#707A8A",
           lightGray: "#B7BDC6",
         },
-        // Terminal colors
+        // Terminal colors (updated to blue)
         terminal: {
-          gold: "#F0B90B",
+          blue: "#0052FF",
           dim: "#B7BDC6",
           dark: "#1E2026",
         },
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-gold": "linear-gradient(45deg, #F0B90B, #F8D33A, #D9A50A)",
+        "gradient-blue": "linear-gradient(45deg, #0052FF, #4D8AFF, #003CBB)",
       },
       keyframes: {
         glow: {
           "0%, 100%": {
-            "box-shadow": "0 0 20px rgba(240, 185, 11, 0.5), 0 0 40px rgba(240, 185, 11, 0.3)",
-            "text-shadow": "0 0 10px rgba(240, 185, 11, 0.5), 0 0 20px rgba(240, 185, 11, 0.3)",
+            "box-shadow": "0 0 20px rgba(0, 82, 255, 0.5), 0 0 40px rgba(0, 82, 255, 0.3)",
+            "text-shadow": "0 0 10px rgba(0, 82, 255, 0.5), 0 0 20px rgba(0, 82, 255, 0.3)",
           },
           "50%": {
-            "box-shadow": "0 0 40px rgba(248, 211, 58, 0.5), 0 0 20px rgba(217, 165, 10, 0.3)",
-            "text-shadow": "0 0 20px rgba(248, 211, 58, 0.5), 0 0 10px rgba(217, 165, 10, 0.3)",
+            "box-shadow": "0 0 40px rgba(77, 138, 255, 0.5), 0 0 20px rgba(0, 60, 187, 0.3)",
+            "text-shadow": "0 0 20px rgba(77, 138, 255, 0.5), 0 0 10px rgba(0, 60, 187, 0.3)",
           },
         },
       },

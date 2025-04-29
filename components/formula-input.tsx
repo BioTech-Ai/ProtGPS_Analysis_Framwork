@@ -1,10 +1,9 @@
 "use client"
 
-import type React from "react"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { BrainCircuitIcon } from "lucide-react"
-import { useState, useCallback } from "react"
+import { Textarea } from "@/components/ui/textarea"
+import { Loader2, PlayIcon, Trash2Icon } from "lucide-react"
 
 interface FormulaInputProps {
   value: string
@@ -13,89 +12,63 @@ interface FormulaInputProps {
   isAnalyzing: boolean
 }
 
-const AMINO_ACIDS = new Set([
-  "A",
-  "C",
-  "D",
-  "E",
-  "F",
-  "G",
-  "H",
-  "I",
-  "K",
-  "L",
-  "M",
-  "N",
-  "P",
-  "Q",
-  "R",
-  "S",
-  "T",
-  "V",
-  "W",
-  "Y",
-])
-
 export default function FormulaInput({ value, onChange, onAnalyze, isAnalyzing }: FormulaInputProps) {
-  const [error, setError] = useState<string | null>(null)
+  const [isFocused, setIsFocused] = useState(false)
 
-  const handleInputChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const newValue = e.target.value.toUpperCase()
-      setError(null)
-      onChange(newValue)
-    },
-    [onChange],
-  )
-
-  const handleAnalyze = useCallback(() => {
-    if (!value.trim()) {
-      setError("Please enter a sequence")
-      return
-    }
-
-    // Allow special commands
-    const command = value.toLowerCase()
-    if (["help", "clear", "example"].includes(command)) {
-      setError(null)
-      onAnalyze()
-      return
-    }
-
-    // Validate sequence
-    const invalidChars = [...value].filter((char) => !AMINO_ACIDS.has(char.toUpperCase()))
-    if (invalidChars.length > 0) {
-      setError(`Invalid amino acids: ${[...new Set(invalidChars)].join(", ")}`)
-      return
-    }
-
-    setError(null)
-    onAnalyze()
-  }, [value, onAnalyze])
+  const handleClear = () => {
+    onChange("")
+  }
 
   return (
     <div className="space-y-4">
-      <div className="space-y-2">
-        <Input
+      <div
+        className={`relative border ${
+          isFocused ? "border-blue-400" : "border-blue-500/30"
+        } rounded-md transition-colors`}
+      >
+        <Textarea
           value={value}
-          onChange={handleInputChange}
-          placeholder="Enter protein sequence or command (help, clear, example)..."
-          className="font-mono bg-black/50 border-[#F0B90B]/30 text-[#F0B90B] placeholder:text-[#F0B90B]/50"
+          onChange={(e) => onChange(e.target.value)}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+          placeholder="Enter protein sequence..."
+          className="min-h-[120px] bg-black/50 border-0 text-blue-100 placeholder:text-blue-400/50 font-mono resize-none"
         />
-        {error ? (
-          <div className="text-red-500 text-xs">{error}</div>
-        ) : (
-          <div className="text-xs text-[#F0B90B]/50 font-mono">Example: MAEGEITTFTALTEKFNLPPGNYKKPKLLYCSNG</div>
+        {value && (
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={handleClear}
+            className="absolute top-2 right-2 h-6 w-6 text-blue-400/70 hover:text-blue-400 hover:bg-blue-500/10"
+          >
+            <Trash2Icon className="h-4 w-4" />
+            <span className="sr-only">Clear</span>
+          </Button>
         )}
       </div>
-      <Button
-        onClick={handleAnalyze}
-        disabled={isAnalyzing}
-        className="w-full bg-[#F0B90B]/10 text-[#F0B90B] hover:bg-[#F0B90B]/20 border border-[#F0B90B]/30 disabled:opacity-50"
-      >
-        <BrainCircuitIcon className="w-4 h-4 mr-2" />
-        {isAnalyzing ? "Analyzing..." : "Analyze Sequence"}
-      </Button>
+
+      <div className="flex justify-between items-center">
+        <div className="text-xs text-blue-400/70">
+          {value.length > 0 ? `${value.length} characters` : "Enter a protein sequence"}
+        </div>
+        <Button
+          onClick={onAnalyze}
+          disabled={isAnalyzing || !value.trim()}
+          className="bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 border border-blue-500/30"
+        >
+          {isAnalyzing ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Analyzing...
+            </>
+          ) : (
+            <>
+              <PlayIcon className="mr-2 h-4 w-4" />
+              Analyze
+            </>
+          )}
+        </Button>
+      </div>
     </div>
   )
 }

@@ -25,7 +25,7 @@ function InfoText({ text, position }: { text: string; position: [number, number,
     canvas.height = 128
     const context = canvas.getContext("2d")
     if (context) {
-      context.fillStyle = "#F0B90B"
+      context.fillStyle = "#0052FF" // Updated to blue
       context.font = "bold 48px Inter"
       context.textAlign = "center"
       context.textBaseline = "middle"
@@ -101,8 +101,9 @@ export default function MoleculeViewer({ sequence, analysisData }: MoleculeViewe
     return () => setMounted(false)
   }, [])
 
+  // Update the color variable to use blue
   const color = useMemo(() => {
-    return "#F0B90B" // Always use the Binance gold color
+    return "#0052FF" // Updated to blue
   }, [])
 
   if (!mounted) return null

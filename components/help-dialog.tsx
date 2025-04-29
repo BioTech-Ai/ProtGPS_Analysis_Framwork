@@ -22,16 +22,17 @@ export function HelpDialog({ title, children, triggerClassName }: HelpDialogProp
         <Button
           variant="outline"
           size="icon"
-          className={`rounded-full ${triggerClassName || "bg-[#F0B90B]/10 border-[#F0B90B]/30 text-[#F0B90B] hover:bg-[#F0B90B]/20"}`}
+          className={`rounded-full ${triggerClassName || "bg-blue-primary/10 border-blue-primary/30 text-blue-primary hover:bg-blue-primary/20"}`}
+          aria-label={`Help about ${title}`}
         >
           <HelpCircle className="h-5 w-5" />
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-md bg-black/95 border-[#F0B90B]/30">
+      <DialogContent className="max-w-md bg-black/95 border-blue-primary/30">
         <DialogHeader>
-          <DialogTitle className="text-[#F0B90B]">{title}</DialogTitle>
+          <DialogTitle className="text-blue-primary text-xl">{title}</DialogTitle>
         </DialogHeader>
-        <div className="text-[#F0B90B]/80 space-y-4">{children}</div>
+        <div className="text-white space-y-4 text-base leading-relaxed">{children}</div>
       </DialogContent>
     </Dialog>
   )

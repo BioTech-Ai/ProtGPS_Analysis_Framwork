@@ -18,8 +18,9 @@ import {
   VolumeIcon as VialIcon,
   SearchIcon,
   WrenchIcon,
+  DiscIcon as DiscordIcon,
 } from "lucide-react"
-import { FlaskConicalIcon } from "lucide-react" // Import FlaskConicalIcon
+import { FlaskConicalIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import Link from "next/link"
@@ -131,26 +132,26 @@ export default function Home() {
     <div className="min-h-screen bg-black">
       <CCTVProteinAnimation />
       {/* Navigation */}
-      <nav className="border-b border-binance-gold/30 bg-black/80 backdrop-blur-sm sticky top-0 z-50">
+      <nav className="border-b border-blue-primary/30 bg-black/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4">
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center space-x-8">
               <div className="flex items-center">
                 <div>
-                  <h1 className="text-2xl font-bold bg-gradient-gold bg-clip-text text-transparent">
+                  <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
                     Biotech Ai - Synapse
                   </h1>
-                  <div className="text-xs text-binance-gold/70">biotech-synapse.xyz</div>
+                  <div className="text-xs text-blue-400/70">biotech-synapse.xyz</div>
                 </div>
               </div>
               <div className="hidden md:flex space-x-6">
-                <a href="#features" className="text-binance-gold hover:text-binance-lightGold transition-colors">
+                <a href="#features" className="text-blue-400 hover:text-blue-300 transition-colors">
                   Features
                 </a>
-                <a href="#experiments" className="text-binance-gold hover:text-binance-lightGold transition-colors">
+                <a href="#experiments" className="text-blue-400 hover:text-blue-300 transition-colors">
                   Experiments
                 </a>
-                <Link href="/white-paper" className="text-binance-gold hover:text-binance-lightGold transition-colors">
+                <Link href="/white-paper" className="text-blue-400 hover:text-blue-300 transition-colors">
                   White Paper
                 </Link>
               </div>
@@ -162,20 +163,24 @@ export default function Home() {
               <Button onClick={() => router.push("/doctor")} className="bg-emerald-600 hover:bg-emerald-700 text-white">
                 Talk to Doctor
               </Button>
-              <Button
-                asChild
-                className="bg-gradient-to-r from-[#F0B90B] to-[#d9a50a] hover:from-[#d9a50a] hover:to-[#F0B90B] text-black font-medium"
+              <a
+                href="https://t.me/BioTech_DRSynapse_Bot"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-[#0088cc] hover:bg-[#0077b5] transition-colors"
+                aria-label="Chat with Dr. Synapse on Telegram"
               >
-                <a
-                  href="https://t.me/BioTech_DRSynapse_Bot"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2"
-                >
-                  <BrandTelegram className="w-4 h-4" />
-                  Telegram Doctor
-                </a>
-              </Button>
+                <BrandTelegram className="w-5 h-5 text-white" />
+              </a>
+              <a
+                href="https://discord.gg/wQbnM9V2"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-[#5865F2] hover:bg-[#4752C4] transition-colors"
+                aria-label="Join our Discord server"
+              >
+                <DiscordIcon className="w-5 h-5 text-white" />
+              </a>
             </div>
           </div>
         </div>
@@ -189,7 +194,7 @@ export default function Home() {
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-5xl font-bold tracking-tight text-binance-gold glow-yellow"
+                className="text-5xl font-bold tracking-tight text-blue-400 glow-blue"
               >
                 Advanced Research Platform
               </motion.h1>
@@ -197,7 +202,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="text-xl text-binance-gold glow-yellow"
+                className="text-xl text-blue-400 glow-blue"
               >
                 BioTech AI - Synapse: Building advanced AI-powered platforms for molecular analysis, genomics research,
                 and drug discovery
@@ -208,16 +213,10 @@ export default function Home() {
                 transition={{ delay: 0.4 }}
                 className="flex space-x-4"
               >
-                <Button
-                  variant="outline"
-                  asChild
-                  className="border-binance-gold/30 text-binance-gold hover:bg-binance-gold/10"
-                >
+                <Button variant="outline" asChild className="border-blue-400/30 text-blue-400 hover:bg-blue-400/10">
                   <Link href="/learn">Learn More</Link>
                 </Button>
               </motion.div>
-
-              {/* Grok Credit - Bold and Prominent */}
             </div>
           </div>
         </div>
@@ -227,10 +226,12 @@ export default function Home() {
       <section id="features" className="py-20 bg-black/50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-binance-gold glow-yellow">Advanced Research Features</h2>
-            <p className="mt-4 text-binance-gold/70">Comprehensive tools for protein analysis and research</p>
+            <h2 className="text-3xl font-bold text-blue-400 glow-blue">Advanced Research Features</h2>
+            <p className="mt-4 text-blue-400/70 max-w-2xl mx-auto">
+              Comprehensive tools for protein analysis and research
+            </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {[
               {
                 icon: Flask,
@@ -268,11 +269,15 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="p-6 border border-binance-gold/20 rounded-lg bg-black/80 hover:bg-binance-gold/5 transition-colors"
+                className="feature-card"
               >
-                <feature.icon className="h-8 w-8 text-binance-gold mb-4" />
-                <h3 className="text-xl font-semibold mb-2 text-binance-gold glow-yellow">{feature.title}</h3>
-                <p className="text-binance-gold/90">{feature.description}</p>
+                <div className="p-6 border border-blue-400/20 rounded-lg bg-black/80 hover:bg-blue-400/5 transition-all duration-300 h-full flex flex-col items-center text-center shadow-md hover:shadow-lg hover:shadow-blue-400/10">
+                  <div className="rounded-full bg-blue-400/10 p-3 mb-4">
+                    <feature.icon className="h-8 w-8 text-blue-400" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3 text-blue-400 glow-blue">{feature.title}</h3>
+                  <p className="text-blue-400/90">{feature.description}</p>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -283,10 +288,10 @@ export default function Home() {
       <section id="experiments" className="py-20 bg-black">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-binance-gold glow-yellow">Available Experiments</h2>
-            <p className="mt-4 text-binance-gold/70">Explore our comprehensive suite of research tools</p>
+            <h2 className="text-3xl font-bold text-blue-400 glow-blue">Available Experiments</h2>
+            <p className="mt-4 text-blue-400/70 max-w-2xl mx-auto">Explore our comprehensive suite of research tools</p>
           </div>
-          <div className="space-y-16">
+          <div className="space-y-16 max-w-6xl mx-auto">
             {categories.map((category, categoryIndex) => (
               <motion.div
                 key={categoryIndex}
@@ -295,9 +300,9 @@ export default function Home() {
                 transition={{ delay: 0.1 }}
                 className="space-y-6"
               >
-                <div className="text-left">
-                  <h3 className="text-2xl font-bold text-binance-gold glow-yellow">{category.title}</h3>
-                  <p className="text-binance-gold/70">{category.description}</p>
+                <div className="text-center">
+                  <h3 className="text-2xl font-bold text-blue-400 glow-blue">{category.title}</h3>
+                  <p className="text-blue-400/70 max-w-2xl mx-auto">{category.description}</p>
                 </div>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {category.experiments.map((experiment, experimentIndex) => (
@@ -308,31 +313,51 @@ export default function Home() {
                       transition={{ delay: experimentIndex * 0.1 }}
                     >
                       <Card
-                        className={`p-6 bg-black/80 border-binance-gold/30 ${
+                        className={`experiment-card h-full flex flex-col p-6 bg-black/80 border-blue-400/30 ${
                           experiment.status === "Beta" ? "opacity-75" : ""
-                        } ${experiment.status === "Operational" && experiment.link ? "cursor-pointer" : "cursor-not-allowed"}`}
+                        } ${
+                          experiment.status === "Operational" && experiment.link
+                            ? "cursor-pointer hover:border-blue-400/60 hover:shadow-md hover:shadow-blue-400/20"
+                            : "cursor-not-allowed"
+                        } transition-all duration-300`}
                         onClick={() =>
                           experiment.status === "Operational" && experiment.link && router.push(experiment.link)
                         }
                       >
                         <div className="flex justify-between items-start mb-4">
-                          <experiment.icon className="h-8 w-8 text-binance-gold" />
+                          <div className="rounded-full bg-blue-400/10 p-2">
+                            <experiment.icon className="h-6 w-6 text-blue-400" />
+                          </div>
                           <span
                             className={`px-2 py-1 rounded-full text-xs flex items-center gap-1 ${
                               experiment.status === "Operational"
-                                ? "bg-binance-gold/10 text-binance-gold border border-binance-gold/30"
-                                : "bg-binance-gold/10 text-binance-gold border border-binance-gold/30"
+                                ? "bg-blue-400/10 text-blue-400 border border-blue-400/30"
+                                : "bg-blue-400/10 text-blue-400 border border-blue-400/30"
                             }`}
                           >
                             {experiment.status === "Beta" && <LockIcon className="w-3 h-3" />}
                             {experiment.status}
                           </span>
                         </div>
-                        <h4 className="text-lg font-semibold mb-2 text-binance-gold glow-yellow">{experiment.title}</h4>
-                        <p className="text-binance-gold/90 mb-4">{experiment.description}</p>
+                        <div className="flex-grow">
+                          <h4 className="text-lg font-semibold mb-2 text-blue-400 glow-blue">{experiment.title}</h4>
+                          <p className="text-blue-400/90 mb-4">{experiment.description}</p>
+                        </div>
                         {experiment.status === "Beta" && (
-                          <div className="mt-2 text-binance-gold/70 text-sm flex items-center">
+                          <div className="mt-2 text-blue-400/70 text-sm flex items-center">
                             <LockIcon className="w-3 h-3 mr-1" /> Currently frozen
+                          </div>
+                        )}
+                        {experiment.status === "Operational" && experiment.tags && (
+                          <div className="flex flex-wrap gap-2 mt-3">
+                            {experiment.tags.map((tag, tagIndex) => (
+                              <span
+                                key={tagIndex}
+                                className="text-xs px-2 py-1 rounded-full bg-blue-400/10 text-blue-300 border border-blue-400/20"
+                              >
+                                {tag}
+                              </span>
+                            ))}
                           </div>
                         )}
                       </Card>
@@ -345,32 +370,29 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Telegram Doctor Section */}
+      {/* Discord Community Section */}
       <section className="py-16 bg-gradient-to-r from-[#001a2c] to-black">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto bg-black/50 border border-[#F0B90B]/30 rounded-lg p-8">
+          <div className="max-w-4xl mx-auto bg-black/50 border border-[#0052FF]/30 rounded-lg p-8 shadow-lg shadow-blue-400/10">
             <div className="flex flex-col md:flex-row items-center gap-8">
-              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#F0B90B] to-[#d9a50a] flex items-center justify-center flex-shrink-0 shadow-lg shadow-[#F0B90B]/20">
-                <BrandTelegram className="w-12 h-12 text-black" />
+              <div className="w-24 h-24 rounded-full bg-[#5865F2] flex items-center justify-center flex-shrink-0 shadow-lg">
+                <DiscordIcon className="w-12 h-12 text-white" />
               </div>
               <div className="space-y-4 text-center md:text-left">
-                <h2 className="text-3xl font-bold text-binance-gold glow-yellow">Connect with Dr. Synapse</h2>
-                <p className="text-binance-gold/90">
-                  Get instant medical assistance and biotech research support through our Telegram bot. Dr. Synapse is
-                  available 24/7 to answer your questions and provide guidance.
+                <h2 className="text-3xl font-bold text-blue-400 glow-blue">Join Our Discord Community</h2>
+                <p className="text-blue-400/90">
+                  Connect with fellow researchers, share insights, and get support from our team. Join the BioTech AI
+                  community on Discord to stay updated on the latest features and developments.
                 </p>
-                <Button
-                  asChild
-                  className="bg-gradient-to-r from-[#F0B90B] to-[#d9a50a] hover:from-[#d9a50a] hover:to-[#F0B90B] text-black font-medium"
-                >
+                <Button asChild className="bg-[#5865F2] hover:bg-[#4752C4] text-white font-medium">
                   <a
-                    href="https://t.me/BioTech_DRSynapse_Bot"
+                    href="https://discord.gg/wQbnM9V2"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2"
                   >
-                    <BrandTelegram className="w-5 h-5" />
-                    Chat on Telegram
+                    <DiscordIcon className="w-5 h-5" />
+                    Join Discord Server
                   </a>
                 </Button>
               </div>
@@ -379,10 +401,30 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer with Grok Credit */}
-      <footer className="py-8 bg-black border-t border-binance-gold/20">
+      {/* Footer */}
+      <footer className="py-8 bg-black border-t border-blue-400/20">
         <div className="container mx-auto px-4 text-center">
-          <p className="text-binance-gold/70">
+          <div className="flex justify-center space-x-6 mb-4">
+            <a
+              href="https://t.me/BioTech_DRSynapse_Bot"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#0088cc] hover:text-[#0077b5] transition-colors"
+              aria-label="Telegram"
+            >
+              <BrandTelegram className="w-6 h-6" />
+            </a>
+            <a
+              href="https://discord.gg/wQbnM9V2"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400 hover:text-blue-300 transition-colors"
+              aria-label="Discord"
+            >
+              <DiscordIcon className="w-6 h-6" />
+            </a>
+          </div>
+          <p className="text-blue-400/70">
             &copy; {new Date().getFullYear()} BioTech AI - Synapse. All rights reserved.
           </p>
         </div>

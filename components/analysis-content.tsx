@@ -28,7 +28,7 @@ interface AnalysisResult {
 function LoadingFallback() {
   return (
     <div className="flex items-center justify-center min-h-[60vh]">
-      <div className="text-[#F0B90B]">Loading analysis tools...</div>
+      <div className="text-blue-400">Loading analysis tools...</div>
     </div>
   )
 }
@@ -108,24 +108,24 @@ export default function AnalysisContent() {
     <ErrorBoundary>
       <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-8">
         <div className="flex items-center justify-between">
-          <TabsList className="bg-black border border-[#F0B90B]/30">
+          <TabsList className="bg-black border border-blue-500/30">
             <TabsTrigger
               value="analysis"
-              className="text-[#F0B90B]/70 data-[state=active]:text-[#F0B90B] data-[state=active]:bg-[#F0B90B]/10"
+              className="text-blue-400/70 data-[state=active]:text-blue-400 data-[state=active]:bg-blue-500/10"
             >
               <BrainCircuitIcon className="w-4 h-4 mr-2" />
               Analysis
             </TabsTrigger>
             <TabsTrigger
               value="visualization"
-              className="text-[#F0B90B]/70 data-[state=active]:text-[#F0B90B] data-[state=active]:bg-[#F0B90B]/10"
+              className="text-blue-400/70 data-[state=active]:text-blue-400 data-[state=active]:bg-blue-500/10"
             >
               <BeakerIcon className="w-4 h-4 mr-2" />
               Visualization
             </TabsTrigger>
             <TabsTrigger
               value="education"
-              className="text-[#F0B90B]/70 data-[state=active]:text-[#F0B90B] data-[state=active]:bg-[#F0B90B]/10"
+              className="text-blue-400/70 data-[state=active]:text-blue-400 data-[state=active]:bg-blue-500/10"
             >
               <BookOpenIcon className="w-4 h-4 mr-2" />
               Learn
@@ -135,7 +135,7 @@ export default function AnalysisContent() {
           <div className="flex space-x-2">
             {/* <Button
               variant="outline"
-              className="bg-black border-[#F0B90B]/30 text-[#F0B90B] hover:bg-[#F0B90B]/10"
+              className="bg-black border-blue-500/30 text-blue-400 hover:bg-blue-500/10"
               onClick={() => setExportOpen(true)}
             >
               <Download className="mr-2 h-4 w-4" />
@@ -143,7 +143,7 @@ export default function AnalysisContent() {
             </Button>
             <Button
               variant="outline"
-              className="bg-black border-[#F0B90B]/30 text-[#F0B90B] hover:bg-[#F0B90B]/10"
+              className="bg-black border-blue-500/30 text-blue-400 hover:bg-blue-500/10"
               onClick={() => setReportOpen(true)}
             >
               <FileText className="mr-2 h-4 w-4" />
@@ -156,9 +156,9 @@ export default function AnalysisContent() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="space-y-8">
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
-                <Card className="bg-black/90 border-[#F0B90B]/30">
+                <Card className="bg-black/90 border-blue-500/30">
                   <CardHeader>
-                    <CardTitle className="text-[#F0B90B] glow-yellow flex items-center gap-2">
+                    <CardTitle className="text-blue-400 glow-blue flex items-center gap-2">
                       <BrainCircuitIcon className="w-5 h-5" />
                       Protein Sequence Analysis
                     </CardTitle>
@@ -187,9 +187,9 @@ export default function AnalysisContent() {
 
         <TabsContent value="visualization">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <Card className="bg-black/90 border-[#F0B90B]/30 lg:col-span-2 h-[600px]">
+            <Card className="bg-black/90 border-blue-500/30 lg:col-span-2 h-[600px]">
               <CardHeader>
-                <CardTitle className="text-[#F0B90B] glow-yellow">Cellular Visualization</CardTitle>
+                <CardTitle className="text-blue-400 glow-blue">Cellular Visualization</CardTitle>
               </CardHeader>
               <CardContent className="h-[calc(100%-4rem)]">
                 <CellularView sequence={sequence} />

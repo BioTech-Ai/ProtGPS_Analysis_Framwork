@@ -53,7 +53,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
             <div className="relative w-48 h-48 mb-8">
               {/* Outer pulsing circle */}
               <motion.div
-                className="absolute inset-0 rounded-full bg-[#F0B90B]/10"
+                className="absolute inset-0 rounded-full bg-[#0052FF]/10"
                 animate={{
                   scale: [1, 1.1, 1],
                   opacity: [0.3, 0.5, 0.3],
@@ -72,7 +72,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
                 transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
               >
                 <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M60 10L105 40V80L60 110L15 80V40L60 10Z" stroke="#F0B90B" strokeWidth="2" fill="none" />
+                  <path d="M60 10L105 40V80L60 110L15 80V40L60 10Z" stroke="#0052FF" strokeWidth="2" fill="none" />
                 </svg>
               </motion.div>
 
@@ -87,13 +87,13 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
                   <motion.path d="M4 4h16v16H4z" fill="none" />
                   <motion.path
                     d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z"
-                    fill="#F0B90B"
+                    fill="#0052FF"
                     strokeWidth="0.2"
-                    stroke="#F0B90B"
+                    stroke="#0052FF"
                   />
                   <motion.path
                     d="M9.5 8.5l5 7M9.5 15.5l5-7"
-                    stroke="#F0B90B"
+                    stroke="#0052FF"
                     strokeWidth="1.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -102,7 +102,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
                   />
                   <motion.path
                     d="M7 10h2M15 10h2M7 14h2M15 14h2"
-                    stroke="#F0B90B"
+                    stroke="#0052FF"
                     strokeWidth="1.5"
                     strokeLinecap="round"
                     animate={{ pathLength: [0, 1] }}
@@ -119,25 +119,25 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.8 }}
             >
-              <h1 className="text-3xl font-bold bg-gradient-gold bg-clip-text text-transparent mb-2">
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-[#0052FF] to-[#4D8AFF] bg-clip-text text-transparent mb-2">
                 BioTech AI - Synapse
               </h1>
-              <p className="text-[#F0B90B]/70 text-sm">Advanced Research Platform</p>
+              <p className="text-[#0052FF]/70 text-sm">Advanced Research Platform</p>
             </motion.div>
 
             {/* Progress Bar */}
             <motion.div
-              className="w-64 h-1 bg-[#F0B90B]/20 rounded-full mt-8 overflow-hidden"
+              className="w-64 h-1 bg-[#0052FF]/20 rounded-full mt-8 overflow-hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
             >
-              <motion.div className="h-full bg-[#F0B90B]" style={{ width: `${progress}%` }} initial={{ width: "0%" }} />
+              <motion.div className="h-full bg-[#0052FF]" style={{ width: `${progress}%` }} initial={{ width: "0%" }} />
             </motion.div>
 
             {/* Loading Text */}
             <motion.p
-              className="text-[#F0B90B]/60 text-sm mt-4 font-mono"
+              className="text-transparent bg-gradient-to-r from-[#0052FF] to-[#4D8AFF] bg-clip-text text-sm mt-4 font-mono"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1 }}

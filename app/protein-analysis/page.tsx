@@ -44,7 +44,7 @@ export default function ProteinAnalysisPage() {
         title: "Analysis Complete",
         description: "Protein sequence analysis completed successfully. View results below.",
         variant: "default",
-        className: "bg-black border-[#F0B90B]/30",
+        className: "bg-black border-blue-500/30",
       })
     } catch (error) {
       toast({
@@ -69,32 +69,34 @@ export default function ProteinAnalysisPage() {
   return (
     <div className="min-h-screen bg-black">
       <ProteinAnimationBg />
-      <header className="border-b border-[#F0B90B]/30 bg-black/80 backdrop-blur-sm">
+      <header className="border-b border-blue-500/30 bg-black/80 backdrop-blur-sm">
         <div className="container mx-auto px-4">
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center gap-4">
-              <Link href="/" className="text-[#F0B90B]/70 hover:text-[#F0B90B] transition-colors">
+              <Link href="/" className="text-blue-400 hover:text-blue-300 transition-colors">
                 <ArrowLeft className="w-5 h-5" />
               </Link>
               <div>
-                <h1 className="text-2xl font-bold flex items-center gap-2 text-[#F0B90B] glow-yellow">
+                <h1 className="text-2xl md:text-3xl font-bold flex items-center gap-2 text-blue-400 glow-blue">
                   <BrainCircuitIcon className="w-6 h-6" />
                   BioTech AI - Synapse Analysis
                 </h1>
-                <div className="text-xs text-[#F0B90B]/70">biotech-synapse.xyz</div>
+                <div className="text-sm text-blue-400/70">biotech-synapse.xyz</div>
               </div>
             </div>
             <HelpDialog title="How to Use Protein Analysis">
-              <p>
+              <p className="text-base leading-relaxed mb-4">
                 The Protein GPS Analysis tool helps you analyze protein sequences to predict their cellular location,
                 structure, and function. Follow these steps to get started:
               </p>
-              <ol className="list-decimal list-inside space-y-2 mt-2">
-                <li>Enter a valid protein sequence in the input field (using standard amino acid letters A-Y)</li>
-                <li>Click the "Analyze Sequence" button to start the analysis</li>
-                <li>
+              <ol className="list-decimal list-inside space-y-3 mb-4">
+                <li className="text-base leading-relaxed">
+                  Enter a valid protein sequence in the input field (using standard amino acid letters A-Y)
+                </li>
+                <li className="text-base leading-relaxed">Click the "Analyze Sequence" button to start the analysis</li>
+                <li className="text-base leading-relaxed">
                   View the results, which include:
-                  <ul className="list-disc list-inside ml-6 mt-1">
+                  <ul className="list-disc list-inside ml-6 mt-2 space-y-1">
                     <li>Primary cellular location</li>
                     <li>Confidence level of the prediction</li>
                     <li>Possible cellular compartments</li>
@@ -104,10 +106,10 @@ export default function ProteinAnalysisPage() {
                   </ul>
                 </li>
               </ol>
-              <p className="mt-2">
+              <p className="text-base leading-relaxed mb-2">
                 <strong>Example sequence:</strong> MAEGEITTFTALTEKFNLPPGNYKKPKLLYCSNG
               </p>
-              <p className="mt-2">
+              <p className="text-base leading-relaxed">
                 <strong>Note:</strong> Analysis typically takes 5-15 seconds depending on sequence length.
               </p>
             </HelpDialog>
@@ -117,31 +119,31 @@ export default function ProteinAnalysisPage() {
 
       <main className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto space-y-8">
-          <Card className="bg-black/90 border-[#F0B90B]/30">
-            <CardHeader>
+          <Card className="bg-black/90 border-blue-500/30">
+            <CardHeader className="pb-2">
               <div className="flex justify-between items-start">
                 <div>
-                  <CardTitle className="text-[#F0B90B]">Protein Sequence Analysis</CardTitle>
-                  <CardDescription className="text-[#F0B90B]/70">
+                  <CardTitle className="text-xl md:text-2xl text-blue-400 mb-1">Protein Sequence Analysis</CardTitle>
+                  <CardDescription className="text-blue-300 text-base">
                     Enter a protein sequence to analyze its location and structure
                   </CardDescription>
                 </div>
               </div>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-6 pt-4">
               <div className="space-y-2">
                 <Input
                   value={sequence}
                   onChange={(e) => setSequence(e.target.value)}
                   placeholder="Enter protein sequence..."
-                  className="font-mono bg-black/50 border-[#F0B90B]/30 text-[#F0B90B] placeholder:text-[#F0B90B]/50"
+                  className="font-mono bg-black/50 border-blue-500/30 text-blue-300 placeholder:text-blue-400/50 text-base py-2.5"
                 />
-                <p className="text-xs text-[#F0B90B]/50">Example: MAEGEITTFTALTEKFNLPPGNYKKPKLLYCSNG</p>
+                <p className="text-sm text-blue-400/70">Example: MAEGEITTFTALTEKFNLPPGNYKKPKLLYCSNG</p>
               </div>
               <Button
                 onClick={handleAnalyze}
                 disabled={isAnalyzing}
-                className="w-full bg-[#F0B90B]/10 text-[#F0B90B] hover:bg-[#F0B90B]/20 border border-[#F0B90B]/30"
+                className="w-full bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 border border-blue-500/30 py-2.5 text-base"
               >
                 {isAnalyzing ? "Analyzing..." : "Analyze Sequence"}
               </Button>
@@ -150,50 +152,62 @@ export default function ProteinAnalysisPage() {
 
           {result && (
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
-              <Card className="bg-black/90 border-[#F0B90B]/30">
-                <CardHeader>
-                  <CardTitle className="text-[#F0B90B]">Analysis Results</CardTitle>
+              <Card className="bg-black/90 border-blue-500/30">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-xl md:text-2xl text-blue-400">Analysis Results</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="grid gap-4">
+                <CardContent className="space-y-6 pt-4">
+                  <div className="grid gap-6">
                     <div>
-                      <h3 className="text-[#F0B90B] font-semibold mb-2">Primary Location</h3>
-                      <p className="text-[#F0B90B]/90">{result.location}</p>
+                      <h3 className="text-lg font-semibold text-blue-400 mb-2">Primary Location</h3>
+                      <p className="text-blue-300 text-base leading-relaxed">{result.location}</p>
                     </div>
                     <div>
-                      <h3 className="text-[#F0B90B] font-semibold mb-2">Confidence</h3>
-                      <p className="text-[#F0B90B]/90">{result.confidence}</p>
+                      <h3 className="text-lg font-semibold text-blue-400 mb-2">Confidence</h3>
+                      <p className="text-blue-300 text-base leading-relaxed">{result.confidence}</p>
                     </div>
                     <div>
-                      <h3 className="text-[#F0B90B] font-semibold mb-2">Cellular Compartments</h3>
-                      <ul className="list-disc list-inside text-[#F0B90B]/90">
+                      <h3 className="text-lg font-semibold text-blue-400 mb-2">Cellular Compartments</h3>
+                      <ul className="list-disc list-inside text-blue-300 space-y-1.5">
                         {result.compartments.map((compartment, index) => (
-                          <li key={index}>{compartment}</li>
+                          <li key={index} className="text-base leading-relaxed">
+                            {compartment}
+                          </li>
                         ))}
                       </ul>
                     </div>
                     <div>
-                      <h3 className="text-[#F0B90B] font-semibold mb-2">Predicted Interactions</h3>
-                      <ul className="list-disc list-inside text-[#F0B90B]/90">
+                      <h3 className="text-lg font-semibold text-blue-400 mb-2">Predicted Interactions</h3>
+                      <ul className="list-disc list-inside text-blue-300 space-y-1.5">
                         {result.interactions.map((interaction, index) => (
-                          <li key={index}>{interaction}</li>
+                          <li key={index} className="text-base leading-relaxed">
+                            {interaction}
+                          </li>
                         ))}
                       </ul>
                     </div>
                     <div>
-                      <h3 className="text-[#F0B90B] font-semibold mb-2">Structural Features</h3>
-                      <ul className="list-disc list-inside text-[#F0B90B]/90">
+                      <h3 className="text-lg font-semibold text-blue-400 mb-2">Structural Features</h3>
+                      <ul className="list-disc list-inside text-blue-300 space-y-1.5">
                         {result.structuralFeatures.map((feature, index) => (
-                          <li key={index}>{feature}</li>
+                          <li key={index} className="text-base leading-relaxed">
+                            {feature}
+                          </li>
                         ))}
                       </ul>
                     </div>
                     <div>
-                      <h3 className="text-[#F0B90B] font-semibold mb-2">Additional Predictions</h3>
-                      <ul className="list-disc list-inside text-[#F0B90B]/90">
-                        <li>Membrane Protein: {result.predictions.membrane ? "Yes" : "No"}</li>
-                        <li>Secretory Protein: {result.predictions.secretory ? "Yes" : "No"}</li>
-                        <li>Nuclear Protein: {result.predictions.nuclear ? "Yes" : "No"}</li>
+                      <h3 className="text-lg font-semibold text-blue-400 mb-2">Additional Predictions</h3>
+                      <ul className="list-disc list-inside text-blue-300 space-y-1.5">
+                        <li className="text-base leading-relaxed">
+                          Membrane Protein: {result.predictions.membrane ? "Yes" : "No"}
+                        </li>
+                        <li className="text-base leading-relaxed">
+                          Secretory Protein: {result.predictions.secretory ? "Yes" : "No"}
+                        </li>
+                        <li className="text-base leading-relaxed">
+                          Nuclear Protein: {result.predictions.nuclear ? "Yes" : "No"}
+                        </li>
                       </ul>
                     </div>
                   </div>

@@ -6,32 +6,57 @@
   --background: 0 0% 0%;
   --foreground: 0 0% 100%;
 
-  /* Binance Theme Colors */
-  --binance-gold: 45 89% 50%;
-  --binance-dark-gold: 45 89% 45%;
-  --binance-light-gold: 45 93% 60%;
+  /* Blue Theme Colors (replacing gold) */
+  --blue-primary: 217 100% 50%;
+  --blue-dark: 217 100% 37%;
+  --blue-light: 217 100% 65%;
 
   /* Theme colors */
-  --primary: var(--binance-gold);
+  --primary: var(--blue-primary);
   --primary-foreground: 0 0% 100%;
 
-  --secondary: var(--binance-dark-gold);
+  --secondary: var(--blue-dark);
   --secondary-foreground: 0 0% 100%;
 
   --muted: 220 14% 96%;
   --muted-foreground: 220 8% 56%;
 
-  --accent: var(--binance-light-gold);
+  --accent: var(--blue-light);
   --accent-foreground: 0 0% 100%;
 
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 210 40% 98%;
 
-  --border: var(--binance-gold);
-  --input: var(--binance-gold);
-  --ring: var(--binance-gold);
+  --border: var(--blue-primary);
+  --input: var(--blue-primary);
+  --ring: var(--blue-primary);
 
   --radius: 0.5rem;
+}
+
+/* Base typography improvements */
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.95);
+  letter-spacing: 0.015em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Improved paragraph readability */
+p {
+  margin-bottom: 1.2rem;
+  max-width: 70ch; /* Optimal reading width */
+  font-size: 1rem;
+  line-height: 1.7;
 }
 
 /* Typography */
@@ -41,12 +66,71 @@ h3,
 h4,
 h5,
 h6 {
-  background: linear-gradient(45deg, #f0b90b, #f8d33a, #d9a50a);
+  background: linear-gradient(45deg, #0052ff, #4d8aff, #003cbb);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   font-weight: 700;
   letter-spacing: -0.02em;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+  scroll-margin-top: 100px; /* For anchor links */
+}
+
+/* Specific heading sizes */
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+
+h6 {
+  font-size: 1.1rem;
+}
+
+/* Improved list readability */
+ul,
+ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.2rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+  line-height: 1.8;
+}
+
+/* Links with better hover states */
+a {
+  color: #4d8aff;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  color: #0052ff;
+  text-decoration: underline;
+}
+
+a:focus {
+  outline: 2px solid #0052ff;
+  outline-offset: 2px;
 }
 
 /* Energy Glow Effect */
@@ -58,7 +142,7 @@ h6 {
   content: "";
   position: absolute;
   inset: -2px;
-  background: linear-gradient(45deg, #f0b90b, #f8d33a, #d9a50a);
+  background: linear-gradient(45deg, #0052ff, #4d8aff, #003cbb);
   border-radius: inherit;
   z-index: -1;
   filter: blur(8px);
@@ -97,60 +181,80 @@ h6 {
   animation: glow 3s ease-in-out infinite;
 }
 
-/* Button styles */
+/* Button styles with improved accessibility */
 .button-energy {
-  background: linear-gradient(45deg, #f0b90b, #f8d33a, #d9a50a);
+  background: linear-gradient(45deg, #0052ff, #4d8aff, #003cbb);
   color: white;
   border: none;
   position: relative;
   z-index: 1;
   transition: all 0.3s ease;
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 0.375rem;
 }
 
 .button-energy:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 20px rgba(240, 185, 11, 0.5);
+  box-shadow: 0 0 20px rgba(0, 82, 255, 0.5);
 }
 
-/* Card styles */
+.button-energy:focus {
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
+/* Card styles with improved text contrast */
 .card-energy {
   background: rgba(0, 0, 0, 0.8);
   border: 1px solid transparent;
   background-clip: padding-box;
   position: relative;
+  padding: 1.5rem;
 }
 
 .card-energy::before {
   content: "";
   position: absolute;
   inset: -1px;
-  background: linear-gradient(45deg, #f0b90b, #f8d33a, #d9a50a);
+  background: linear-gradient(45deg, #0052ff, #4d8aff, #003cbb);
   z-index: -1;
   border-radius: inherit;
   filter: blur(4px);
 }
 
-/* Terminal glow effects */
+/* Terminal text with improved readability */
 .terminal-glow {
-  text-shadow: 0 0 10px rgba(240, 185, 11, 0.7);
+  text-shadow: 0 0 10px rgba(0, 82, 255, 0.7);
+  font-family: "Courier New", monospace;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.03em;
+}
+
+.glow-blue {
+  text-shadow: 0 0 10px rgba(0, 82, 255, 0.7);
 }
 
 .glow-yellow {
-  text-shadow: 0 0 10px rgba(240, 185, 11, 0.7);
+  text-shadow: 0 0 10px rgba(0, 82, 255, 0.7);
 }
 
 .terminal-box-glow {
-  box-shadow: 0 0 15px rgba(240, 185, 11, 0.3);
+  box-shadow: 0 0 15px rgba(0, 82, 255, 0.3);
 }
 
 /* Update the glow effect for the Synapse branding */
 .synapse-text {
-  background: linear-gradient(45deg, #f0b90b, #f8d33a, #d9a50a);
+  background: linear-gradient(45deg, #0052ff, #4d8aff, #003cbb);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   animation: gradient-shift 8s ease infinite;
   background-size: 300% 300%;
+  font-weight: 700;
+  font-size: 1.2rem;
 }
 
 @keyframes gradient-shift {
@@ -174,9 +278,289 @@ h6 {
   }
 }
 
-/* Make scan lines more visible */
+/* Update keyframes for glow animation */
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(0, 82, 255, 0.5), 0 0 40px rgba(0, 82, 255, 0.3);
+    text-shadow: 0 0 10px rgba(0, 82, 255, 0.5), 0 0 20px rgba(0, 82, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(77, 138, 255, 0.5), 0 0 20px rgba(0, 60, 187, 0.3);
+    text-shadow: 0 0 20px rgba(77, 138, 255, 0.5), 0 0 10px rgba(0, 60, 187, 0.3);
+  }
+}
+
+/* Update scan lines color */
 .bg-scan-lines {
-  background: linear-gradient(to bottom, transparent 50%, rgba(0, 255, 255, 0.1) 50%);
+  background: linear-gradient(to bottom, transparent 50%, rgba(0, 82, 255, 0.1) 50%);
   background-size: 100% 4px;
   animation: scan 10s linear infinite;
+}
+
+/* Improved form element readability */
+input,
+textarea,
+select {
+  font-size: 1rem;
+  padding: 0.75rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(0, 82, 255, 0.5);
+  color: white;
+  border-radius: 0.375rem;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #0052ff;
+  box-shadow: 0 0 0 2px rgba(0, 82, 255, 0.3);
+}
+
+/* Improved table readability */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: 1.5rem;
+}
+
+th,
+td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(0, 82, 255, 0.2);
+}
+
+th {
+  font-weight: 600;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #4d8aff;
+}
+
+/* Accessibility improvements */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Skip to content link for keyboard users */
+.skip-to-content {
+  position: absolute;
+  left: -9999px;
+  top: 1rem;
+  background: #0052ff;
+  color: white;
+  padding: 0.5rem 1rem;
+  z-index: 100;
+  border-radius: 0.25rem;
+}
+
+.skip-to-content:focus {
+  left: 1rem;
+}
+
+/* Code block readability */
+code,
+pre {
+  font-family: "Courier New", monospace;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 0.25rem;
+}
+
+code {
+  padding: 0.2rem 0.4rem;
+  font-size: 0.9rem;
+}
+
+pre {
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(0, 82, 255, 0.3);
+}
+
+/* Blockquote styling */
+blockquote {
+  border-left: 4px solid #0052ff;
+  padding-left: 1rem;
+  margin-left: 0;
+  margin-right: 0;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Feature and experiment cards */
+.feature-card,
+.experiment-card {
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.experiment-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.experiment-card:hover {
+  transform: translateY(-3px);
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  .feature-card,
+  .experiment-card {
+    height: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .feature-card,
+  .experiment-card {
+    padding: 1rem;
+  }
+}
+
+/* High contrast mode improvements */
+@media (prefers-contrast: more) {
+  body {
+    color: white;
+  }
+
+  a {
+    color: #80afff;
+    text-decoration: underline;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    color: white;
+  }
+
+  .synapse-text {
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    color: white;
+  }
+}
+
+.bg-gradient-gold {
+  background: linear-gradient(45deg, #0052ff, #4d8aff, #003cbb);
+}
+
+/* Add these styles to the existing globals.css file */
+
+/* White Paper specific styles */
+.prose {
+  color: rgb(191, 219, 254); /* text-blue-200 */
+  max-width: 65ch;
+}
+
+.prose p {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+  line-height: 1.8;
+}
+
+.prose strong {
+  color: rgb(96, 165, 250); /* text-blue-400 */
+  font-weight: 600;
+}
+
+.prose ul {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+  list-style-type: disc;
+  padding-left: 1.625em;
+}
+
+.prose ol {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+  list-style-type: decimal;
+  padding-left: 1.625em;
+}
+
+.prose li {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  line-height: 1.8;
+}
+
+.prose h3 {
+  color: rgb(96, 165, 250); /* text-blue-400 */
+  font-weight: 600;
+  margin-top: 1.6em;
+  margin-bottom: 0.6em;
+  line-height: 1.6;
+}
+
+.prose h4 {
+  color: rgb(96, 165, 250); /* text-blue-400 */
+  font-weight: 600;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  line-height: 1.5;
+}
+
+/* Improved focus styles for accessibility */
+:focus-visible {
+  outline: 2px solid rgb(59, 130, 246); /* blue-500 */
+  outline-offset: 2px;
 }
