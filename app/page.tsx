@@ -186,6 +186,15 @@ export default function Home() {
         </div>
       </nav>
 
+      {/* Cryptographic Address Banner */}
+      <div className="bg-blue-900/30 border-b border-blue-400/20 py-2">
+        <div className="container mx-auto px-4">
+          <p className="text-blue-300 text-sm text-center font-mono">
+            CA: 7fjw3VGVSEdNyMPzuWaF51NGmJLHmkG5Wwkrfzbvpump
+          </p>
+        </div>
+      </div>
+
       {/* Hero Section */}
       <section className="relative py-20 bg-black">
         <div className="container mx-auto px-4">
@@ -427,6 +436,7 @@ export default function Home() {
           <p className="text-blue-400/70">
             &copy; {new Date().getFullYear()} BioTech AI - Synapse. All rights reserved.
           </p>
+          <p className="text-blue-300/50 text-xs mt-2 font-mono">CA: 7fjw3VGVSEdNyMPzuWaF51NGmJLHmkG5Wwkrfzbvpump</p>
         </div>
       </footer>
     </div>
