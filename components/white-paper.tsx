@@ -363,7 +363,7 @@ export default function WhitePaper() {
             </ul>
           </section>
 
-          {/* Open Source Contribution */}
+          {/* Open Source Contribution - now section 8 instead of 7 */}
           <section className="space-y-4">
             <h2 className="text-2xl font-bold text-[#F0B90B]">8. Open Source Contribution</h2>
             <p>

@@ -26,40 +26,8 @@ import Link from "next/link"
 import SplashScreen from "@/components/splash-screen"
 import CCTVProteinAnimation from "@/components/cctv-protein-animation"
 import { BrandTelegram } from "@/components/icons/brand-telegram"
-// First, import the Twitter icon and Discord icon
-import { BrandTwitter } from "@/components/icons/brand-twitter"
-import { DiscIcon as DiscordIcon } from "lucide-react"
-import type { LucideIcon } from "lucide-react"
 
-// Define interfaces for our data structure
-interface BaseExperiment {
-  title: string
-  description: string
-  icon: LucideIcon
-  status: string
-}
-
-interface OperationalExperiment extends BaseExperiment {
-  id: string
-  link: string
-  tags: string[]
-  status: "Operational"
-  highlight: boolean
-}
-
-interface BetaExperiment extends BaseExperiment {
-  status: "Beta"
-}
-
-type Experiment = OperationalExperiment | BetaExperiment
-
-interface Category {
-  title: string
-  description: string
-  experiments: Experiment[]
-}
-
-const categories: Category[] = [
+const categories = [
   {
     title: "Molecular Biology",
     description: "Advanced molecular analysis and research tools",
@@ -71,7 +39,7 @@ const categories: Category[] = [
         icon: BrainCircuitIcon,
         link: "/analysis",
         tags: ["AI", "Protein Analysis", "Molecular Dynamics"],
-        status: "Operational" as const,
+        status: "Operational",
         highlight: true,
       },
     ],
@@ -85,31 +53,31 @@ const categories: Category[] = [
         icon: MicroscopeIcon,
         title: "Advanced Cell Imaging",
         description: "High-resolution microscopy with AI-powered analysis",
-        status: "Beta" as const,
+        status: "Beta",
       },
       {
         icon: PetriDishIcon,
         title: "Smart Cell Culture System",
         description: "Automated culture monitoring with growth optimization",
-        status: "Beta" as const,
+        status: "Beta",
       },
       {
         icon: CellIcon,
         title: "Cell Signaling Analyzer",
         description: "Advanced pathway and molecular interaction analysis",
-        status: "Beta" as const,
+        status: "Beta",
       },
       {
         icon: SearchIcon,
         title: "Cancer Cell Detector",
         description: "ML-based cancer cell identification and analysis",
-        status: "Beta" as const,
+        status: "Beta",
       },
       {
         icon: WrenchIcon,
         title: "Cancer Cell Repair Analysis",
         description: "DNA repair mechanism analysis in cancer cells",
-        status: "Beta" as const,
+        status: "Beta",
       },
     ],
   },
@@ -121,19 +89,19 @@ const categories: Category[] = [
         icon: FlaskConicalIcon,
         title: "Virtual Drug Screening",
         description: "AI-driven drug screening and molecular docking",
-        status: "Beta" as const,
+        status: "Beta",
       },
       {
         icon: VialIcon,
         title: "Toxicity Predictor",
         description: "ML-based ADMET property prediction",
-        status: "Beta" as const,
+        status: "Beta",
       },
       {
         icon: HeartPulseIcon,
         title: "Biomarker Discovery",
         description: "Multi-omics biomarker identification",
-        status: "Beta" as const,
+        status: "Beta",
       },
     ],
   },
@@ -208,43 +176,10 @@ export default function Home() {
                   Telegram Doctor
                 </a>
               </Button>
-              <div className="flex items-center space-x-2">
-                <a
-                  href="https://x.com/BioTechAi_sol"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-binance-gold hover:text-binance-lightGold transition-colors"
-                  aria-label="Twitter/X"
-                >
-                  <BrandTwitter className="w-5 h-5" />
-                </a>
-                <a
-                  href="https://discord.gg/fjeyeh5p"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-binance-gold hover:text-binance-lightGold transition-colors"
-                  aria-label="Discord"
-                >
-                  <DiscordIcon className="w-5 h-5" />
-                </a>
-              </div>
             </div>
           </div>
         </div>
       </nav>
-
-      {/* CA Address Banner */}
-      <div className="bg-gradient-to-r from-black via-[#F0B90B]/10 to-black border-y border-[#F0B90B]/20 py-2">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-center">
-            <div className="text-center">
-              <span className="text-[#F0B90B]/80 text-sm font-mono">
-                CA: <span className="font-bold text-[#F0B90B]">9fCgRed2oFenKySLP9CYeyjYVhApiqAfM7Kf5pYtpump</span>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
 
       {/* Hero Section */}
       <section className="relative py-20 bg-black">
@@ -264,8 +199,23 @@ export default function Home() {
                 transition={{ delay: 0.2 }}
                 className="text-xl text-binance-gold glow-yellow"
               >
-                Building advanced AI-powered platforms for molecular analysis, genomics research, and drug discovery
+                BioTech AI - Synapse: Building advanced AI-powered platforms for molecular analysis, genomics research,
+                and drug discovery
               </motion.p>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="flex space-x-4"
+              >
+                <Button
+                  variant="outline"
+                  asChild
+                  className="border-binance-gold/30 text-binance-gold hover:bg-binance-gold/10"
+                >
+                  <Link href="/learn">Learn More</Link>
+                </Button>
+              </motion.div>
 
               {/* Grok Credit - Bold and Prominent */}
             </div>
@@ -360,9 +310,9 @@ export default function Home() {
                       <Card
                         className={`p-6 bg-black/80 border-binance-gold/30 ${
                           experiment.status === "Beta" ? "opacity-75" : ""
-                        } ${experiment.status === "Operational" ? "cursor-pointer" : "cursor-not-allowed"}`}
+                        } ${experiment.status === "Operational" && experiment.link ? "cursor-pointer" : "cursor-not-allowed"}`}
                         onClick={() =>
-                          experiment.status === "Operational" && router.push((experiment as OperationalExperiment).link)
+                          experiment.status === "Operational" && experiment.link && router.push(experiment.link)
                         }
                       >
                         <div className="flex justify-between items-start mb-4">
@@ -432,35 +382,6 @@ export default function Home() {
       {/* Footer with Grok Credit */}
       <footer className="py-8 bg-black border-t border-binance-gold/20">
         <div className="container mx-auto px-4 text-center">
-          <div className="flex justify-center space-x-4 mb-4">
-            <a
-              href="https://x.com/BioTechAi_sol"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-binance-gold hover:text-binance-lightGold transition-colors"
-              aria-label="Twitter/X"
-            >
-              <BrandTwitter className="w-6 h-6" />
-            </a>
-            <a
-              href="https://discord.gg/fjeyeh5p"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-binance-gold hover:text-binance-lightGold transition-colors"
-              aria-label="Discord"
-            >
-              <DiscordIcon className="w-6 h-6" />
-            </a>
-            <a
-              href="https://t.me/BioTech_DRSynapse_Bot"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-binance-gold hover:text-binance-lightGold transition-colors"
-              aria-label="Telegram"
-            >
-              <BrandTelegram className="w-6 h-6" />
-            </a>
-          </div>
           <p className="text-binance-gold/70">
             &copy; {new Date().getFullYear()} BioTech AI - Synapse. All rights reserved.
           </p>

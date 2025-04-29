@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  transpilePackages: ["three", "@react-three/fiber", "@react-three/drei"],
+  transpilePackages: ["three"],
   // Optimize for deployment
   poweredByHeader: false,
   compress: true,
@@ -18,6 +18,7 @@ const nextConfig = {
 
     return config
   },
+  // Added configuration to fix deployment errors
   eslint: {
     ignoreDuringBuilds: true,
   },
