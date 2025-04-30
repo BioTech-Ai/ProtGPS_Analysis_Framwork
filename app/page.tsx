@@ -18,7 +18,6 @@ import {
   VolumeIcon as VialIcon,
   SearchIcon,
   WrenchIcon,
-  DiscIcon as DiscordIcon,
 } from "lucide-react"
 import { FlaskConicalIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -141,7 +140,6 @@ export default function Home() {
                   <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
                     Biotech Ai - Synapse
                   </h1>
-                  {/* Website address was removed in previous update */}
                 </div>
               </div>
               <div className="hidden md:flex space-x-6">
@@ -172,21 +170,11 @@ export default function Home() {
               >
                 <BrandTelegram className="w-5 h-5 text-white" />
               </a>
-              <a
-                href="https://discord.gg/wQbnM9V2"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center w-10 h-10 rounded-full bg-[#5865F2] hover:bg-[#4752C4] transition-colors"
-                aria-label="Join our Discord server"
-              >
-                <DiscordIcon className="w-5 h-5 text-white" />
-              </a>
+              {/* Removed Discord icon and link */}
             </div>
           </div>
         </div>
       </nav>
-
-      {/* Removed the Cryptographic Address Banner */}
 
       {/* Hero Section */}
       <section className="relative py-20 bg-black">
@@ -372,36 +360,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Discord Community Section */}
-      <section className="py-16 bg-gradient-to-r from-[#001a2c] to-black">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto bg-black/50 border border-[#0052FF]/30 rounded-lg p-8 shadow-lg shadow-blue-400/10">
-            <div className="flex flex-col md:flex-row items-center gap-8">
-              <div className="w-24 h-24 rounded-full bg-[#5865F2] flex items-center justify-center flex-shrink-0 shadow-lg">
-                <DiscordIcon className="w-12 h-12 text-white" />
-              </div>
-              <div className="space-y-4 text-center md:text-left">
-                <h2 className="text-3xl font-bold text-blue-400 glow-blue">Join Our Discord Community</h2>
-                <p className="text-blue-400/90">
-                  Connect with fellow researchers, share insights, and get support from our team. Join the BioTech AI
-                  community on Discord to stay updated on the latest features and developments.
-                </p>
-                <Button asChild className="bg-[#5865F2] hover:bg-[#4752C4] text-white font-medium">
-                  <a
-                    href="https://discord.gg/wQbnM9V2"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2"
-                  >
-                    <DiscordIcon className="w-5 h-5" />
-                    Join Discord Server
-                  </a>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Removed Discord Community Section */}
 
       {/* Footer */}
       <footer className="py-8 bg-black border-t border-blue-400/20">
@@ -416,20 +375,11 @@ export default function Home() {
             >
               <BrandTelegram className="w-6 h-6" />
             </a>
-            <a
-              href="https://discord.gg/wQbnM9V2"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 hover:text-blue-300 transition-colors"
-              aria-label="Discord"
-            >
-              <DiscordIcon className="w-6 h-6" />
-            </a>
+            {/* Removed Discord icon and link */}
           </div>
           <p className="text-blue-400/70">
             &copy; {new Date().getFullYear()} BioTech AI - Synapse. All rights reserved.
           </p>
-          {/* Removed the CA from the footer */}
         </div>
       </footer>
     </div>

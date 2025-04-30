@@ -4,7 +4,7 @@ import type React from "react"
 
 import { useState, useRef, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import { Send, ArrowLeft, Loader2, User, Bot, RefreshCw, Copy, Check, DiscIcon as Discord } from "lucide-react"
+import { Send, ArrowLeft, Loader2, User, Bot, RefreshCw, Copy, Check } from "lucide-react"
 import { BrandTelegram } from "@/components/icons/brand-telegram"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
@@ -21,7 +21,7 @@ export default function DoctorChat() {
     {
       role: "assistant",
       content:
-        "Hello, I'm Dr. Synapse, your AI medical assistant. I can help with questions about the BioTech AI platform and provide general medical information. For more specialized assistance, you can also connect with me on Telegram (https://t.me/BioTech_DRSynapse_Bot) or join our Discord Lab (https://discord.gg/wQbnM9V2). How can I help you today?",
+        "Hello, I'm Dr. Synapse, your AI medical assistant. I can help with questions about the BioTech AI platform and provide general medical information. For more specialized assistance, you can also connect with me on Telegram (https://t.me/BioTech_DRSynapse_Bot). How can I help you today?",
     },
   ])
   const [input, setInput] = useState("")
@@ -98,7 +98,7 @@ export default function DoctorChat() {
       {
         role: "assistant",
         content:
-          "Hello, I'm Dr. Synapse, your AI medical assistant. I can help with questions about the BioTech AI platform and provide general medical information. For more specialized assistance, you can also connect with me on Telegram (https://t.me/BioTech_DRSynapse_Bot) or join our Discord Lab (https://discord.gg/wQbnM9V2). How can I help you today?",
+          "Hello, I'm Dr. Synapse, your AI medical assistant. I can help with questions about the BioTech AI platform and provide general medical information. For more specialized assistance, you can also connect with me on Telegram (https://t.me/BioTech_DRSynapse_Bot). How can I help you today?",
       },
     ])
   }
@@ -134,17 +134,7 @@ export default function DoctorChat() {
                   Telegram
                 </Button>
               </a>
-              <a
-                href="https://discord.gg/wQbnM9V2"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-400 hover:text-blue-300"
-              >
-                <Button variant="outline" size="sm" className="border-blue-500/30 text-blue-400 hover:bg-blue-500/10">
-                  <Discord className="h-4 w-4 mr-2" />
-                  Discord
-                </Button>
-              </a>
+              {/* Removed Discord button */}
               <Button
                 variant="outline"
                 size="sm"
@@ -250,15 +240,7 @@ export default function DoctorChat() {
               <BrandTelegram className="h-4 w-4 mr-1" />
               Telegram Doctor
             </a>
-            <a
-              href="https://discord.gg/wQbnM9V2"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center text-blue-400/70 hover:text-blue-400"
-            >
-              <Discord className="h-4 w-4 mr-1" />
-              Discord Lab Doctor
-            </a>
+            {/* Removed Discord Lab Doctor link */}
           </div>
         </div>
       </div>
