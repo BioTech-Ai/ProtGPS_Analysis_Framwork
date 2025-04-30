@@ -141,7 +141,7 @@ export default function Home() {
                   <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
                     Biotech Ai - Synapse
                   </h1>
-                  {/* Removed the website address line */}
+                  {/* Website address was removed in previous update */}
                 </div>
               </div>
               <div className="hidden md:flex space-x-6">
@@ -186,10 +186,7 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Cryptographic Address Banner - Centered */}
-      <div className="bg-blue-900/30 border-b border-blue-400/20 py-3 flex justify-center items-center">
-        <p className="text-blue-300 text-sm font-mono">CA: 7fjw3VGVSEdNyMPzuWaF51NGmJLHmkG5Wwkrfzbvpump</p>
-      </div>
+      {/* Removed the Cryptographic Address Banner */}
 
       {/* Hero Section */}
       <section className="relative py-20 bg-black">
@@ -432,7 +429,7 @@ export default function Home() {
           <p className="text-blue-400/70">
             &copy; {new Date().getFullYear()} BioTech AI - Synapse. All rights reserved.
           </p>
-          <p className="text-blue-300/50 text-xs mt-2 font-mono">CA: 7fjw3VGVSEdNyMPzuWaF51NGmJLHmkG5Wwkrfzbvpump</p>
+          {/* Removed the CA from the footer */}
         </div>
       </footer>
     </div>
