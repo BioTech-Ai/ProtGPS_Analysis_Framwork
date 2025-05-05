@@ -5,6 +5,7 @@ import { useState } from "react"
 import {
   BookOpen,
   BrainCircuitIcon,
+  Copy,
   Database,
   FlaskRoundIcon as Flask,
   Globe,
@@ -217,6 +218,38 @@ export default function Home() {
                   <Link href="/learn">Learn More</Link>
                 </Button>
               </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contract Address Section */}
+      <section className="py-8 bg-black/70 border-y border-blue-400/20">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row items-center justify-between">
+            <div className="flex items-center mb-4 md:mb-0">
+              <div className="mr-3 p-2 rounded-full bg-blue-400/10">
+                <Database className="h-6 w-6 text-blue-400" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-blue-400">Contract Address (CA)</h3>
+                <p className="text-blue-300/70 text-sm">Verified on Blockchain</p>
+              </div>
+            </div>
+            <div className="flex items-center">
+              <code className="bg-blue-400/10 px-4 py-2 rounded-lg text-blue-300 font-mono text-sm md:text-base break-all">
+                L9kKS8X59sZdHxphFyfKxBkJ42ZbHUgYMCaxct7pump
+              </code>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="ml-2 text-blue-400/70 hover:text-blue-400 hover:bg-blue-400/10"
+                onClick={() => {
+                  navigator.clipboard.writeText("L9kKS8X59sZdHxphFyfKxBkJ42ZbHUgYMCaxct7pump")
+                }}
+              >
+                <Copy className="h-4 w-4" />
+              </Button>
             </div>
           </div>
         </div>
