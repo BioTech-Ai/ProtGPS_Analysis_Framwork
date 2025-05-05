@@ -26,6 +26,7 @@ import Link from "next/link"
 import SplashScreen from "@/components/splash-screen"
 import CCTVProteinAnimation from "@/components/cctv-protein-animation"
 import { BrandTelegram } from "@/components/icons/brand-telegram"
+import { BrandDiscordIcon } from "@/components/icons/brand-discord"
 
 const categories = [
   {
@@ -169,6 +170,15 @@ export default function Home() {
                 aria-label="Chat with Dr. Synapse on Telegram"
               >
                 <BrandTelegram className="w-5 h-5 text-white" />
+              </a>
+              <a
+                href="https://discord.gg/ZAzX7Yew"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-[#5865F2] hover:bg-[#4c56c4] transition-colors"
+                aria-label="Join our Discord community"
+              >
+                <BrandDiscordIcon className="w-5 h-5 text-white" />
               </a>
               {/* Removed Discord icon and link */}
             </div>
@@ -374,6 +384,15 @@ export default function Home() {
               aria-label="Telegram"
             >
               <BrandTelegram className="w-6 h-6" />
+            </a>
+            <a
+              href="https://discord.gg/ZAzX7Yew"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#5865F2] hover:text-[#4c56c4] transition-colors"
+              aria-label="Discord"
+            >
+              <BrandDiscordIcon className="w-6 h-6" />
             </a>
             {/* Removed Discord icon and link */}
           </div>
