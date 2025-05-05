@@ -156,7 +156,7 @@ export default function Home() {
             </div>
             <div className="flex items-center space-x-4">
               <Button onClick={handleStartAnalysis} className="button-energy">
-                Protein Analysis
+                Analysis
               </Button>
               <Button onClick={() => router.push("/doctor")} className="bg-emerald-600 hover:bg-emerald-700 text-white">
                 Talk to Doctor
